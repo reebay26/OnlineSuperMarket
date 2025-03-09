@@ -1,0 +1,102 @@
+﻿
+@{
+    ViewData["Title"] = "Order_details";
+    Layout = "~/Views/Shared/dashboardlayout.cshtml";
+}
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f8f9fa;
+        padding: 20px;
+    }
+
+    #st-head {
+        font-weight: bold;
+        font-size: 2.9rem;
+    }
+
+    .table {
+        background-color: white;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+    }
+
+    .table-hover tbody tr:hover {
+        background-color: #f1f1f1;
+    }
+
+    .table th {
+        background-color: #7fad39;
+        color: white;
+        text-transform: uppercase;
+    }
+
+    .actions button {
+        margin-right: 5px;
+    }
+
+    /* .btn-edit {
+                background-color: #28a745;
+                color: white;
+            } */
+    .btn-edit a {
+        background-color: #7fad39;
+        color: white;
+        padding: 5px 17px;
+        border-radius: 4px
+    }
+
+    .btn-delete {
+        background-color: #dc3545;
+        color: white;
+    }
+
+    .btn-edit a:hover {
+        opacity: 0.9;
+    }
+
+    .btn-delete:hover {
+        opacity: 0.9;
+    }
+
+    .bg-menu-theme .menu-inner > .menu-item.active:before {
+        background: #7fad39;
+    }
+</style>
+</style>
+
+<div class="container mt-4">
+    <h2 class="my-5 text-center" id="st-head"> Orders Details</h2>
+    <div class="table-responsive">
+        <table class="table table-hover text-center">
+            <thead>
+                <tr>
+                    <th>Orders Id</th>
+                    <th>Customer Name</th>
+                    <th>State</th>
+                    <th>Address </th>
+                    <th>Phone </th>
+                    <th>Email </th>
+
+                </tr>
+            </thead>
+            <tbody>
+                @if(ViewBag.orders!=null){
+                @foreach (var orders in ViewBag.orders){
+                <tr>
+                    <td>@orders.Order_id</td>
+                    <td>@orders.First_Name</td>
+                    <td>@orders.State</td>
+                    <td>@orders.Address</td>
+                        <td>@orders.Phone</td>
+                        <td>@orders.Customer_Email</td>
+                </tr>
+                    }}
+                <!-- Add more rows as needed -->
+            </tbody>
+        </table>
+    </div>
+</div>
+

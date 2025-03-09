@@ -1,0 +1,577 @@
+﻿@model IEnumerable<OnlineSuperMarket.Models.Cart_Model>
+    @inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
+@{
+    ViewData["Title"] = "Shop Cart";
+   
+}
+    <link rel="stylesheet" href="~/css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="~/css/font-awesome.min.css" type="text/css">
+    <link rel="stylesheet" href="~/css/elegant-icons.css" type="text/css">
+    <link rel="stylesheet" href="~/css/nice-select.css" type="text/css">
+    <link rel="stylesheet" href="~/css/jquery-ui.min.css" type="text/css">
+    <link rel="stylesheet" href="~/css/owl.carousel.min.css" type="text/css">
+    <link rel="stylesheet" href="~/css/slicknav.min.css" type="text/css">
+    <link rel="stylesheet" href="~/css/style.css" type="text/css">
+<body>
+    <style>
+        .header__top__right {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            gap: 15px; 
+        }
+
+            .header__top__right > div {
+                display: flex;
+                align-items: center;
+            }
+
+        .header__top__right__language {
+            position: relative;
+        }
+
+            .header__top__right__language ul {
+                position: absolute;
+                top: 100%;
+                left: 0;
+                display: none;
+                background: white;
+                list-style: none;
+                padding: 5px;
+                border-radius: 5px;
+                box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            }
+
+            .header__top__right__language:hover ul {
+                display: block;
+            }
+
+        .header__top__right__social a {
+            margin-right: 10px;
+        }
+
+        .header__top__right__auth {
+            position: relative;
+        }
+        
+        </style>
+  
+    <!-- Humberger Begin -->
+    <div class="humberger__menu__overlay"></div>
+    <div class="humberger__menu__wrapper">
+        <div class="humberger__menu__logo">
+            <a href="#"><img src="~/img/logo.png" alt=""></a>
+        </div>
+        <div class="col-lg-3">
+            <div class="header__cart">
+                <ul>
+                    <li><a href="#"><i class="fa fa-heart"></i> <span>1</span></a></li>
+                    <li><a href="@Url.Action("Shop_cart","web")"><i class="fa fa-shopping-bag"></i> <span>0</span></a></li>
+                </ul>
+                <div class="header__cart__price">item: <span>$0.00</span></div>
+            </div>
+        </div>
+        <div class="humberger__menu__widget">
+            <div class="header__top__right__language">
+                <img src="~/img/language.png" alt="">
+                <div>English</div>
+                <span class="arrow_carrot-down"></span>
+                <ul>
+                    <li><a href="#">Spanis</a></li>
+                    <li><a href="#">English</a></li>
+                </ul>
+            </div>
+            <div class="header__top__right">
+                <div class="header__top__right__social">
+                    <a href="#"><i class="fa fa-facebook"></i></a>
+                    <a href="#"><i class="fa fa-twitter"></i></a>
+                    <a href="#"><i class="fa fa-linkedin"></i></a>
+                    <a href="#"><i class="fa fa-pinterest-p"></i></a>
+                </div>
+                <div class="header__top__right__language">
+                    <img src="~/img/language.png" alt="">
+                    <div>English</div>
+                    <span class="arrow_carrot-down"></span>
+                    <ul>
+                        <li><a href="#">Spanish</a></li>
+                        <li><a href="#">English</a></li>
+                    </ul>
+                </div>
+                <div class="header__top__right__auth ">
+                    @if (HttpContextAccessor.HttpContext.Session.GetString("UserEmail") == null)
+                    {
+
+                        <a href="@Url.Action("Register","Web")"><i class="fa fa-user"></i> Register</a>
+                    }
+                    else
+                    {
+                        <!-- User Dropdown -->
+
+                        <a class="nav-link  dropdown-toggle p-0 d-flex align-items-center" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <img src="~/img/profile.jpg" class="rounded-circle" width="40" height="40" alt="User Avatar">
+                        </a>
+
+                        <!-- Dropdown Menu -->
+                        <ul class="dropdown-menu dropdown-menu-end shadow-lg border-0 rounded-3" aria-labelledby="userDropdown">
+                            <li class="px-3 py-2">
+                                <div class="d-flex align-items-center">
+                                    <img src="~/img/profile.jpg" class="rounded-circle me-3" width="40" height="40" alt="User Avatar">
+                                    <div class="flex-grow-1">
+                                        <h6 class="mb-1 fw-semibold">@HttpContextAccessor.HttpContext.Session.GetString("UserName")</h6>
+                                        <small class="text-muted d-block">Customer</small>
+                                    </div>
+                                </div>
+                            </li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li>
+                                <a class="dropdown-item d-flex align-items-center" href="#">
+                                    <i class="bi bi-person me-2"></i> My Profile
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item d-flex align-items-center" href="#">
+                                    <i class="bi bi-gear me-2"></i> Settings
+                                </a>
+                            </li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li>
+                                <a href="@Url.Action("Logout", "Web")" class="dropdown-item d-flex align-items-center text-danger">
+                                    <i class="bi bi-power me-2"></i> Log Out
+                                </a>
+                            </li>
+                        </ul>
+
+
+
+                    }
+                </div>
+            </div>
+        </div>
+        <nav class="humberger__menu__nav mobile-menu">
+            <ul>
+                <li class="active"><a href=" @Url.Action("Home","web")">Home</a></li>
+                <li><a href="@Url.Action("Vegetables_category" , "category")">Shop</a></li>
+                <li>
+                    <a href="#">Pages</a>
+                    <ul class="header__menu__dropdown">
+                        <li><a href="@Url.Action("Shop_details","web")">Shop Details</a></li>
+
+                        <li><a href="@Url.Action("Chechout","web")">Check Out</a></li>
+
+                    </ul>
+                </li>
+                <li><a href="@Url.Action("About","web")">About Us</a></li>
+                <li><a href="@Url.Action("Contact","web")">Contact</a></li>
+            </ul>
+        </nav>
+        <div id="mobile-menu-wrap"></div>
+        <div class="header__top__right__social">
+            <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+            <a href="#"><i class="fa fa-twitter"></i></a>
+            <a href="#"><i class="fa fa-linkedin"></i></a>
+            <a href="#"><i class="fa fa-pinterest-p"></i></a>
+        </div>
+        <div class="humberger__menu__contact">
+            <ul>
+                <li><i class="fa fa-envelope"></i> ogani@gmail.com</li>
+                <li>Free Shipping for all Order of $99</li>
+            </ul>
+        </div>
+    </div>
+    <!-- Humberger End -->
+    <!-- Header Section Begin -->
+    <header class="header">
+        <div class="header__top">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6 col-md-6">
+                        <div class="header__top__left">
+                            <ul>
+                                <li><i class="fa fa-envelope"></i> ogani@gmail.com</li>
+                                <li>Free Shipping for all Order of $99</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6">
+                        <div class="header__top__right">
+                            <div class="header__top__right__social">
+                                <a href="#"><i class="fa fa-facebook"></i></a>
+                                <a href="#"><i class="fa fa-twitter"></i></a>
+                                <a href="#"><i class="fa fa-linkedin"></i></a>
+                                <a href="#"><i class="fa fa-pinterest-p"></i></a>
+                            </div>
+                            <div class="header__top__right__language">
+                                <img src="~/img/language.png" alt="">
+                                <div>English</div>
+                                <span class="arrow_carrot-down"></span>
+                                <ul>
+                                    <li><a href="#">Spanish</a></li>
+                                    <li><a href="#">English</a></li>
+                                </ul>
+                            </div>
+                            <div class="header__top__right">
+                                <div class="header__top__right__social">
+                                    <a href="#"><i class="fa fa-facebook"></i></a>
+                                    <a href="#"><i class="fa fa-twitter"></i></a>
+                                    <a href="#"><i class="fa fa-linkedin"></i></a>
+                                    <a href="#"><i class="fa fa-pinterest-p"></i></a>
+                                </div>
+                                <div class="header__top__right__language">
+                                    <img src="~/img/language.png" alt="">
+                                    <div>English</div>
+                                    <span class="arrow_carrot-down"></span>
+                                    <ul>
+                                        <li><a href="#">Spanish</a></li>
+                                        <li><a href="#">English</a></li>
+                                    </ul>
+                                </div>
+                                <div class="header__top__right__auth ">
+                                    @if (HttpContextAccessor.HttpContext.Session.GetString("UserEmail") == null)
+                                    {
+
+                                        <a href="@Url.Action("Register","Web")"><i class="fa fa-user"></i> Register</a>
+                                    }
+                                    else
+                                    {
+                                        <!-- User Dropdown -->
+
+                                        <a class="nav-link  dropdown-toggle p-0 d-flex align-items-center" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                            <img src="~/img/profile.jpg" class="rounded-circle" width="40" height="40" alt="User Avatar">
+                                        </a>
+
+                                        <!-- Dropdown Menu -->
+                                        <ul class="dropdown-menu dropdown-menu-end shadow-lg border-0 rounded-3" aria-labelledby="userDropdown">
+                                            <li class="px-3 py-2">
+                                                <div class="d-flex align-items-center">
+                                                    <img src="~/img/profile.jpg" class="rounded-circle me-3" width="40" height="40" alt="User Avatar">
+                                                    <div class="flex-grow-1">
+                                                        <h6 class="mb-1 fw-semibold">@HttpContextAccessor.HttpContext.Session.GetString("UserName")</h6>
+                                                        <small class="text-muted d-block">Customer</small>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                            <li><hr class="dropdown-divider"></li>
+                                            <li>
+                                                <a class="dropdown-item d-flex align-items-center" href="#">
+                                                    <i class="bi bi-person me-2"></i> My Profile
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a class="dropdown-item d-flex align-items-center" href="#">
+                                                    <i class="bi bi-gear me-2"></i> Settings
+                                                </a>
+                                            </li>
+                                            <li><hr class="dropdown-divider"></li>
+                                            <li>
+                                                <a href="@Url.Action("Logout", "Web")" class="dropdown-item d-flex align-items-center text-danger">
+                                                    <i class="bi bi-power me-2"></i> Log Out
+                                                </a>
+                                            </li>
+                                        </ul>
+
+
+
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <marquee style="background-color: #7ab952; color: white;" behavior="" direction="right"> <span style="margin-left: 60px;">ONLY CASH ON DELIVERY AVAILABLE</span> <span style="margin-left: 60px;">  ONLY CASH ON DELIVERY AVAILABLE </span> <span style="margin-left: 60px;">ONLY CASH ON DELIVERY AVAILABLE</span><span style="margin-left: 60px;">ONLY CASH ON DELIVERY AVAILABLE</span><span style="margin-left: 60px;">ONLY CASH ON DELIVERY AVAILABLE</span><span style="margin-left: 60px;">ONLY CASH ON DELIVERY AVAILABLE</span></marquee>
+
+
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3">
+                    <div class="header__logo">
+                        <a href="@Url.Action("Home","web")"><img src="~/img/logo.png" alt=""></a>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <nav class="header__menu">
+                        <ul>
+                            <li class="active"><a href="@Url.Action("Home","web")">Home</a></li>
+                            <li><a href="@Url.Action("Vegetables_category" , "category")">Shop</a></li>
+                            <li>
+                                <a href="#">Pages</a>
+                                <ul class="header__menu__dropdown">
+                                    <li><a href="@Url.Action("shop_details","web")">Shop Details</a></li>
+
+                                    <li><a href="@Url.Action("Chechout","web")">Check Out</a></li>
+
+                                </ul>
+                            </li>
+                            <li><a href="@Url.Action("About","web")">About Us</a></li>
+                            <li><a href="@Url.Action("Contact", "web")">Contact</a></li>
+                        </ul>
+                    </nav>
+                </div>
+                <div class="col-lg-3">
+                    <div class="header__cart">
+                        <ul>
+                            <li><a href="#"><i class="fa fa-heart"></i> <span>1</span></a></li>
+                            <li><a href="@Url.Action("Shop_cart","web")"><i class="fa fa-shopping-bag"></i> <span>0</span></a></li>
+                        </ul>
+                        <div class="header__cart__price">item: <span>$0.00</span></div>
+                    </div>
+                </div>
+            </div>
+            <div class="humberger__open">
+                <i class="fa fa-bars"></i>
+            </div>
+        </div>
+    </header>
+    <!-- Header Section End -->
+    <section class="hero">
+        <div class="container">
+            <div class="row justify-content-center">
+
+                <div class="col-lg-9 d-flex justify-content-center">
+                    <div class="hero__search">
+                        <div class="hero__search__form">
+                            <form action="@Url.Action("Search", "Category")" method="get">
+                                <input type="text" name="Search_input" placeholder="Search by productName, category, or brand...">
+                                <button type="submit" class="site-btn">SEARCH</button>
+                            </form>
+
+                        </div>
+
+                    </div>
+
+
+
+
+                </div>
+            </div>
+        </div>
+<section class="breadcrumb-section set-bg" data-setbg="/img/breadcrumb.jpg">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <div class="breadcrumb__text">
+                    <h2>Shopping Cart</h2>
+                    <div class="breadcrumb__option">
+                        <a href="@Url.Action("Home", "web")">Home</a>
+                        <span>Shopping Cart</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="shoping-cart spad">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="shoping__cart__table">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th class="shoping__product">Products</th>
+                                <th>Price</th>
+                                <th>Quantity</th>
+                                <th>Total</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @if (Model != null && Model.Any())
+                            {
+                                foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td class="shoping__cart__item">
+                                            <h5>@item.Product?.ProductName</h5>
+                                        </td>
+                                        <td class="shoping__cart__price">
+                                            Rs:@item.Product?.ProductPrice
+                                        </td>
+                                        <td class="shoping__cart__quantity">
+                                            <div class="quantity">
+                                                <input type="number" value="@item.Quantity" min="1" onchange="updateCart(@item.CartId, this.value)">
+                                            </div>
+                                        </td>
+                                        <td class="shoping__cart__total">
+                                            Rs:@(item.TotalPrice)
+                                        </td>
+                                        <td class="shoping__cart__item__close">
+                                            <form action="@Url.Action("RemoveFromCart", "Cart")" method="post" ;">
+                                                <input type="hidden" name="CartId" value="@item.CartId" />
+                                                <button type="submit" class=" my-2 btn btn-action btn-danger">Remove</button>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                }
+                            }
+                            else
+                            {
+                                <tr>
+                                    <td colspan="5" class="text-center">Your cart is empty.</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="shoping__cart__btns">
+                    <a href="@Url.Action("Home", "web")" class="primary-btn cart-btn">CONTINUE SHOPPING</a>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="shoping__checkout">
+                    <h5>Cart Total</h5>
+                    <ul>
+                        <li>Total <span>$@(Model?.Sum(x => x.TotalPrice) ?? 0)</span></li>
+                    </ul>
+                
+                                <a href="@Url.Action("Chechout", "Web")" class="primary-btn">PROCEED TO CHECKOUT</a>
+                           
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+        <script>
+            function updateCartSummary() {
+                $.ajax({
+                    url: '@Url.Action("CartSummary", "Cart")',
+                    type: 'GET',
+                    success: function (data) {
+                        $(".header__cart ul li a i.fa-shopping-bag + span").text(data.itemCount);
+                        $(".header__cart__price span").text("$" + data.totalPrice.toFixed(2));
+                    }
+                });
+            }
+
+            $(document).ready(function () {
+                updateCartSummary(); // Page load pe update kare
+                setInterval(updateCartSummary, 5000); // Har 5 sec me update kare
+            });
+        </script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="~/js/jquery-3.3.1.min.js"></script>
+        <script src="~/js/bootstrap.min.js"></script>
+        <script src="~/js/jquery.nice-select.min.js"></script>
+        <script src="~/js/jquery-ui.min.js"></script>
+        <script src="~/js/jquery.slicknav.js"></script>
+        <script src="~/js/mixitup.min.js"></script>
+        <script src="~/js/owl.carousel.min.js"></script>
+        <script src="~/js/main.js"></script>
+        <script>
+            function updateCart(cartId, quantity) {
+                fetch(`/Cart/UpdateCart?cartId=${cartId}&quantity=${quantity}`, { method: "POST" })
+                .then(response => response.json())
+                .then(data => {
+                    alert(data.message);
+                    location.reload();
+                });
+            }
+
+            function removeItem(cartId) {
+                fetch(`/Cart/RemoveFromCart?cartId=${cartId}`, { method: "POST" })
+                .then(response => response.json())
+                .then(data => {
+                    alert(data.message);
+                    location.reload();
+                });
+            }
+        </script>
+        <!-- Footer Section Begin -->
+        <footer class="footer spad">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-3 col-md-6 col-sm-6">
+                        <div class="footer__about">
+                            <div class="footer__about__logo">
+                                <a href="@Url.Action("Home","web")"><img src="~/img/logo.png" alt=""></a>
+                            </div>
+                            <ul>
+                                <li>Address: 60-49 Road 11378 New York</li>
+                                <li>Phone: +65 11.188.888</li>
+                                <li>Email: ogani@gmail.com</li>
+                                else if
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-sm-6 offset-lg-1">
+                        <div class="footer__widget">
+                            <h6>Useful Links</h6>
+                            <ul>
+                                <li><a href="@Url.Action("Home","web")">Home</a></li>
+                                <li><a href="@Url.Action("About","web")">About Our Shop</a></li>
+                                <li><a href="@Url.Action("Contact","web")">Contact Us</a></li>
+                                <li><a href="@Url.Action("Chechout","web")">Checkout</a></li>
+                                <li><a href="@Url.Action("Shop_details","web")">Shop Details</a></li>
+                                <li><a href="#">Privacy Policy</a></li>
+                            </ul>
+
+                            <ul>
+                                <li><a href="@Url.Action("Vegetables_category","category")">Vegetables</a></li>
+                                <li><a href="@Url.Action("fruits_category","category")">Fresh Fruits</a></li>
+                                <li><a href="@Url.Action("Grocery_category","category")">Grocery</a></li>
+                                <li><a href="@Url.Action("Meat_category","category")">Meat & Sea Food</a></li>
+                                <li><a href="@Url.Action("Cosmetics_category","category")">Cosmetics</a></li>
+                                <li><a href="@Url.Action("Men_cloth_category","category")">Men Clothing</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-12">
+                        <div class="footer__widget">
+                            <h6>Join Our Newsletter Now</h6>
+                            <p>Get E-mail updates about our latest shop and special offers.</p>
+                            <form action="#">
+                                <input type="text" placeholder="Enter your mail">
+                                <button type="submit" class="site-btn">Subscribe</button>
+                            </form>
+                            <div class="footer__widget__social">
+                                <a href="#"><i class="fa fa-facebook"></i></a>
+                                <a href="#"><i class="fa fa-instagram"></i></a>
+                                <a href="#"><i class="fa fa-twitter"></i></a>
+                                <a href="#"><i class="fa fa-pinterest"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="footer__copyright">
+                            <div class="footer__copyright__text">
+                                <p>
+                                    <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                                    Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+                                    <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                                </p>
+                            </div>
+                            <div class="footer__copyright__payment"><img src="/img/payment-item.png" alt=""></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <script src="~/assets/vendor/libs/jquery/jquery.js"></script>
+        <script src="~/assets/vendor/libs/popper/popper.js"></script>
+        <script src="~/assets/vendor/js/bootstrap.js"></script>
+        <script src="~/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js"></script>
+        <script src="~/assets/vendor/js/menu.js"></script>
+
+        <!-- endbuild -->
+        <!-- Vendors JS -->
+        <script src="~/assets/vendor/libs/apex-charts/apexcharts.js"></script>
+
+        <!-- Main JS -->
+        <script src="~/assets/js/main.js"></script>
+
+        <!-- Page JS -->
+        <script src="~/assets/js/dashboards-analytics.js"></script>
+</body>

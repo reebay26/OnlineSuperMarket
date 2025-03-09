@@ -1,0 +1,187 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OTP Verification - Online Supermarket</title>
+   
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f7fc;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh; /* Ensures the body takes up the full height of the viewport */
+            overflow: hidden; /* Prevents any overflow outside the viewport */
+        }
+
+        .container {
+            max-width: 500px;
+            width: 100%; /* Ensure the container doesn't exceed the max-width */
+            padding: 50px 20px;
+            background-color: #ffffff;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            position: relative;
+            overflow: hidden;
+        }
+
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        p {
+            text-align: center;
+            margin: 10px 0 30px;
+            color: #555;
+        }
+
+        .otp-input-container {
+            display: flex;
+            justify-content: space-between;
+            gap: 10px;
+        }
+
+        .otp-input {
+            width: 60px;
+            height: 60px;
+            text-align: center;
+            font-size: 24px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            outline: none;
+            transition: border-color 0.3s ease;
+        }
+
+            .otp-input:focus {
+                border-color: #7fad39;
+            }
+
+        .submit-btn {
+            width: 100%;
+            padding: 12px;
+            background-color: #7fad39;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 18px;
+            margin-top: 30px;
+            cursor: pointer;
+        }
+
+            .submit-btn:hover {
+                background-color: #7fad39;
+            }
+
+        .resend-link {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+            .resend-link a {
+                color: #7fad39;
+                text-decoration: none;
+            }
+
+                .resend-link a:hover {
+                    text-decoration: underline;
+                }
+
+        /* Blob image styling */
+        .blob {
+            position: absolute;
+            border-radius: 50%;
+            overflow: hidden;
+        }
+
+            .blob img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+
+        .blob-top-right {
+            width: 190px;
+            height: 190px;
+            top: -40px;
+            right: -40px;
+            transform: rotate(-15deg);
+        }
+
+        .blob-bottom-left {
+            width: 150px;
+            height: 150px;
+            bottom: -30px;
+            left: -50px;
+            transform: rotate(-15deg);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- Blob Decoration -->
+        <div class="blob blob-top-right">
+            <img src="~/img/blob.png" alt="Top Decoration">
+        </div>
+        <div class="blob blob-bottom-left">
+            <img src="~/img/fruit blob.png" alt="Bottom Decoration">
+        </div>
+
+        <h1>Enter OTP</h1>
+        <p>Please enter the 5-digit OTP sent to your email/ <br />phone  to verify your account.</p>
+        @if (!string.IsNullOrEmpty(ViewBag.Message))
+        {
+            <p style="color:red;">@ViewBag.Message</p>
+        }
+        <form asp-action="Otp" asp-controller="web" method="post">
+            <div class="otp-input-container">
+                <input type="text" id="otp1" class="otp-input" maxlength="1" autofocus oninput="moveFocus(event, 'otp2')" />
+                <input type="text" id="otp2" class="otp-input" maxlength="1" oninput="moveFocus(event, 'otp3')" />
+                <input type="text" id="otp3" class="otp-input" maxlength="1" oninput="moveFocus(event, 'otp4')" />
+                <input type="text" id="otp4" class="otp-input" maxlength="1" oninput="moveFocus(event, 'otp5')" />
+                <input type="text" id="otp5" class="otp-input" maxlength="1" oninput="moveFocus(event, 'otp6')" />
+                <input type="text" id="otp6" class="otp-input" maxlength="1" oninput="combineOTP()" />
+
+                <!-- Hidden Field to Store Full OTP -->
+                <input type="hidden" id="otp" name="otp" />
+            </div>
+
+            <button type="submit" class="submit-btn">Verify OTP</button>
+        </form>
+
+        <!-- Resend OTP Link -->
+        <div class="resend-link">
+            <p class="signin-link">
+                Didn't receive the OTP? <a href="@Url.Action("ResendOTP","web")">Resend OTP</a>
+            </p>
+
+
+        </div>
+    </div>
+
+    <script>
+        // Function to move focus to the next OTP input field
+        function moveFocus(event, nextInputId) {
+            const currentInput = event.target;
+            if (currentInput.value.length === 1) {
+                const nextInput = document.querySelector(`[name="${nextInputId}"]`);
+                if (nextInput) nextInput.focus();
+            }
+        }
+                function combineOTP() {
+            let otp = '';
+            for (let i = 1; i <= 6; i++) {
+                otp += document.getElementById(`otp${i}`).value;
+            }
+            document.getElementById("otp").value = otp;
+        }
+
+    </script>
+</body>
+</html>

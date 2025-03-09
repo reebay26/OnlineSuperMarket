@@ -1,0 +1,194 @@
+﻿@model OnlineSuperMarket.Models.Product_Model
+
+@{
+    ViewData["Title"] = "Add_products";
+    Layout = "~/Views/Shared/dashboardlayout.cshtml";
+}
+<style>
+
+   
+
+    .container {
+        max-width: 90%; /* Increased width */
+        margin: 2rem auto;
+        background-color: #ffffff; /* White background for the form container */
+        padding: 20px;
+        border-radius: 8px;
+      
+    }
+
+    h2 {
+        text-align: center;
+        margin-bottom: 20px;
+        color: #333; /* Dark color for heading */
+        font-weight: bolder;
+    }
+
+    .form-group {
+        margin-bottom: 15px;
+    }
+
+    label {
+        display: block;
+        font-weight: bold;
+        margin-bottom: 5px;
+        color: #7fad39; /* Purple color for labels */
+    }
+
+    input[type="text"],
+    input[type="number"],
+    textarea,
+    select {
+        width: 100%; /* Full width */
+        padding: 10px;
+        font-size: 16px;
+        border: 1px solid #7fad39 !important; 
+        border-radius: 4px;
+        background-color: #f4f4f4; /* Light gray background for inputs */
+        color: #333; /* Dark text for inputs */
+    }
+
+    input[type="text"],
+    input[type="number"],
+    textarea,
+    select:hover {
+        width: 100%; /* Full width */
+        padding: 10px;
+        font-size: 16px;
+        border: 1px solid #7fad39 !important;
+        border-radius: 4px;
+        background-color: #f4f4f4; /* Light gray background for inputs */
+        color: #333; /* Dark text for inputs */
+    }
+    select {
+        cursor: pointer;
+    }
+
+    .form-group-inline {
+        display: flex;
+        justify-content: space-between;
+        gap: 15px;
+    }
+
+        .form-group-inline .form-group {
+            flex: 1;
+        }
+
+    .btn, .btn-reset {
+        display: block;
+        width: 100%; /* Full width */
+        background-color: #7fad39; /* Purple button */
+        color: white;
+        border: none;
+        padding: 10px;
+        font-size: 16px;
+        border-radius: 4px;
+        cursor: pointer;
+        margin-top: 10px; /* Space between buttons */
+    }
+
+        .btn:hover {
+            background-color: #7fad39; /* Purple button */
+            color: white;
+        }
+
+    .btn-reset {
+        background-color: #4b7014; /* Red for reset button */
+    }
+
+        .btn-reset:hover {
+            background-color: #7fad39;
+            color: white; /* Darker red on hover */
+        }
+
+    .bg-menu-theme .menu-inner > .menu-item.active:before {
+        background: #7fad39;
+    }
+
+    input:focus,
+    input:hover,
+    textarea:focus,
+    textarea:hover,
+    select:focus,
+    select:hover {
+        border: 2px solid #7fad39 !important; 
+        box-shadow: 0 0 5px #7fad39 !important; 
+    }
+</style>
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Add_products</title>
+</head>
+<body>
+
+    <div class="container">
+        <h2>Add Products</h2>
+        <h6>@ViewBag.imageError</h6>
+            <form asp-action="Add_products" enctype="multipart/form-data" asp-controller="Admin" method="post">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="ProductName" class="control-label">Product Name</label>
+                    <input style="border-color:#7fad39" asp-for="ProductName" name="ProductName" placeholder="Enter ProductName" class="form-control" />
+                    <span asp-validation-for="ProductName" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="category_id" class="control-label">Category Id</label>
+
+                    <select name="product_category"  class="form-control">
+                        @if (ViewBag.Category != null)
+                        {
+                            @foreach (var item in ViewBag.Category)
+                            {
+                                <option value="@item.category_id">@item.category_name</option>
+                            }
+                        }
+                    </select>
+                  
+            </div>
+            <div class="form-group">
+                <label asp-for="brand_id" class="control-label">Brand Id</label>
+                    <select name="product_brand" class="form-control">
+                        <option value="">-- Select Brand (Optional) --</option>
+                        @if (ViewBag.Brand != null)
+                        {
+                            @foreach (var item in ViewBag.Brand)
+                            {
+                                <option value="@item.brand_id">@item.brand_name</option>
+                            }
+                        }
+                </select>
+            </div>
+            <div class="form-group">
+                <label asp-for="ProductPrice" class="control-label">Product Price</label>
+                    <input asp-for="ProductPrice" placeholder="Enter Product Price" name="ProductPrice" class="form-control" />
+                <span asp-validation-for="ProductPrice" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ProductQuantity" class="control-label">Product Quantity</label>
+                    <input asp-for="ProductQuantity" placeholder="Enter Product Quantity" name="ProductQuantity" class="form-control" />
+                <span asp-validation-for="ProductQuantity" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ProductDescription" class="control-label">Product Description</label>
+                    <input asp-for="ProductDescription" placeholder="Enter Product Description" name="ProductDescription" class="form-control" />
+                <span asp-validation-for="ProductDescription" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ProductImage" class="control-label">Product Image</label>
+                <input asp-for="Product Image" type="file"  name="ProductImage" class="form-control" />
+                <span asp-validation-for="ProductDescription" class="text-danger"></span>
+            </div>
+            <!-- Submit Button -->
+            <button type="submit" class="btn">Add Product</button>
+
+            <!-- Reset Button -->
+            <button type="reset" class="btn-reset ">Reset Form</button>
+        </form>
+    </div>
+
+
+</body>
+</html>

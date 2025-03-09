@@ -1,0 +1,559 @@
+﻿@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
+@model IEnumerable<OnlineSuperMarket.Models.Product_Model>
+
+<!DOCTYPE html>
+<html lang="zxx">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Ogani Template">
+    <meta name="keywords" content="Ogani, unica, creative, html">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Ogani</title>
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;900&display=swap" rel="stylesheet">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+    <!-- Customized Bootstrap Stylesheet -->
+    <!-- about css styling -->
+    <link rel="stylesheet" href="~/aboutpg_styling/css/open-iconic-bootstrap.min.css">
+    <link rel="stylesheet" href="~/aboutpg_styling/css/animate.css">
+
+    <link rel="stylesheet" href="~/aboutpg_styling/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="~/aboutpg_styling/css/owl.theme.default.min.css">
+    <link rel="stylesheet" href="~/aboutpg_styling/css/magnific-popup.css">
+
+    <link rel="stylesheet" href="~/aboutpg_styling/css/aos.css">
+
+    <link rel="stylesheet" href="~/aboutpg_styling/css/ionicons.min.css">
+
+    <link rel="stylesheet" href="~/aboutpg_styling/css/bootstrap-datepicker.css">
+    <link rel="stylesheet" href="~/aboutpg_styling/css/jquery.timepicker.css">
+
+
+    <link rel="stylesheet" href="~/aboutpg_styling/css/flaticon.css">
+    <link rel="stylesheet" href="~/aboutpg_styling/css/icomoon.css">
+    <link rel="stylesheet" href="~/aboutpg_styling/css/style.css">
+
+    <!-- Css Styles -->
+    <link rel="stylesheet" href="~/css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="~/css/font-awesome.min.css" type="text/css">
+    <link rel="stylesheet" href="~/css/elegant-icons.css" type="text/css">
+    <link rel="stylesheet" href="~/css/nice-select.css" type="text/css">
+    <link rel="stylesheet" href="~/css/jquery-ui.min.css" type="text/css">
+    <link rel="stylesheet" href="~/css/owl.carousel.min.css" type="text/css">
+    <link rel="stylesheet" href="~/css/slicknav.min.css" type="text/css">
+    <link rel="stylesheet" href="~/css/style.css" type="text/css">
+    <!-- Owl Carousel CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style></style>
+</head>
+
+<body>
+
+    <!-- Page Preloder -->
+    <div id="preloder">
+        <div class="loader"></div>
+    </div>
+
+    <!-- Humberger Begin -->
+    <div class="humberger__menu__overlay"></div>
+    <div class="humberger__menu__wrapper">
+        <div class="humberger__menu__logo">
+            <a href="#"><img src="~/img/logo.png" alt=""></a>
+        </div>
+        <div class="humberger__menu__cart">
+            <ul>
+                <li><a href="#"><i class="fa fa-heart"></i> <span>1</span></a></li>
+                <li><a href="@Url.Action("Shop_cart","web")"><i class="fa fa-shopping-bag"></i> <span>3</span></a></li>
+            </ul>
+            <div class="header__cart__price">item: <span>$150.00</span></div>
+        </div>
+        <div class="humberger__menu__widget">
+            <div class="header__top__right__language">
+                <img src="~/img/language.png" alt="">
+                <div>English</div>
+                <span class="arrow_carrot-down"></span>
+                <ul>
+                    <li><a href="#">Spanis</a></li>
+                    <li><a href="#">English</a></li>
+                </ul>
+            </div>
+            <div class="header__top__right__auth ">
+                @if (HttpContextAccessor.HttpContext.Session.GetString("UserEmail") == null)
+                {
+
+                    <a href="@Url.Action("Register","Web")"><i class="fa fa-user"></i> Register</a>
+                }
+                else
+                {
+                    <!-- User Dropdown -->
+
+                    <a class="nav-link  dropdown-toggle p-0 d-flex align-items-center" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <img src="~/assets/img/avatars/1.png" class="rounded-circle" width="40" height="40" alt="User Avatar">
+                    </a>
+
+                    <!-- Dropdown Menu -->
+                    <ul class="dropdown-menu dropdown-menu-end shadow-lg border-0 rounded-3" aria-labelledby="userDropdown">
+                        <li class="px-3 py-2">
+                            <div class="d-flex align-items-center">
+                                <img src="~/assets/img/avatars/1.png" class="rounded-circle me-3" width="40" height="40" alt="User Avatar">
+                                <div class="flex-grow-1">
+                                    <h6 class="mb-1 fw-semibold">@HttpContextAccessor.HttpContext.Session.GetString("UserName")</h6>
+                                    <small class="text-muted d-block">Customer</small>
+                                </div>
+                            </div>
+                        </li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li>
+                            <a class="dropdown-item d-flex align-items-center" href="#">
+                                <i class="bi bi-person me-2"></i> My Profile
+                            </a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item d-flex align-items-center" href="#">
+                                <i class="bi bi-gear me-2"></i> Settings
+                            </a>
+                        </li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li>
+                            <a href="@Url.Action("Logout", "Web")" class="dropdown-item d-flex align-items-center text-danger">
+                                <i class="bi bi-power me-2"></i> Log Out
+                            </a>
+                        </li>
+                    </ul>
+
+
+
+                }
+            </div>
+        </div>
+        <nav class="humberger__menu__nav mobile-menu">
+            <ul>
+                <li class="active"><a href=" @Url.Action("Home","web")">Home</a></li>
+                <li><a href="@Url.Action("Vegetables_category" , "category")">Shop</a></li>
+                <li>
+                    <a href="#">Pages</a>
+                    <ul class="header__menu__dropdown">
+                        <li><a href="@Url.Action("Shop_details","web")">Shop Details</a></li>
+
+                        <li><a href="@Url.Action("Checkout","web")">Check Out</a></li>
+
+                    </ul>
+                </li>
+                <li><a href="@Url.Action("About","web")">About Us</a></li>
+                <li><a href="@Url.Action("Contact","web")">Contact</a></li>
+            </ul>
+        </nav>
+        <div id="mobile-menu-wrap"></div>
+        <div class="header__top__right__social">
+            <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+            <a href="#"><i class="fa fa-twitter"></i></a>
+            <a href="#"><i class="fa fa-linkedin"></i></a>
+            <a href="#"><i class="fa fa-pinterest-p"></i></a>
+        </div>
+        <div class="humberger__menu__contact">
+            <ul>
+                <li><i class="fa fa-envelope"></i> ogani@gmail.com</li>
+                <li>Free Shipping for all Order of $99</li>
+            </ul>
+        </div>
+    </div>
+    <!-- Humberger End -->
+    <!-- Header Section Begin -->
+    <header class="header">
+        <div class="header__top">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6 col-md-6">
+                        <div class="header__top__left">
+                            <ul>
+                                <li><i class="fa fa-envelope"></i> ogani@gmail.com</li>
+                                <li>Free Shipping for all Order of $99</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6">
+                        <div class="header__top__right">
+                            <div class="header__top__right__social">
+                                <a href="#"><i class="fa fa-facebook"></i></a>
+                                <a href="#"><i class="fa fa-twitter"></i></a>
+                                <a href="#"><i class="fa fa-linkedin"></i></a>
+                                <a href="#"><i class="fa fa-pinterest-p"></i></a>
+                            </div>
+                            <div class="header__top__right__language">
+                                <img src="~/img/language.png" alt="">
+                                <div>English</div>
+                                <span class="arrow_carrot-down"></span>
+                                <ul>
+                                    <li><a href="#">Spanish</a></li>
+                                    <li><a href="#">English</a></li>
+                                </ul>
+                            </div>
+                            <div class="header__top__right__auth ">
+                                @if (HttpContextAccessor.HttpContext.Session.GetString("UserEmail") == null)
+                                {
+
+                                    <a href="@Url.Action("Register","Web")"><i class="fa fa-user"></i> Register</a>
+                                }
+                                else
+                                {
+                                    <!-- User Dropdown -->
+
+                                    <a class="nav-link  dropdown-toggle p-0 d-flex align-items-center" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                        <img src="~/img/profile.jpg" class="rounded-circle" width="40" height="40" alt="User Avatar">
+                                    </a>
+
+                                    <!-- Dropdown Menu -->
+                                    <ul class="dropdown-menu dropdown-menu-end shadow-lg border-0 rounded-3" aria-labelledby="userDropdown">
+                                        <li class="px-3 py-2">
+                                            <div class="d-flex align-items-center">
+                                                <img src="~/img/profile.jpg" class="rounded-circle me-3" width="40" height="40" alt="User Avatar">
+                                                <div class="flex-grow-1">
+                                                    <h6 class="mb-1 fw-semibold">@HttpContextAccessor.HttpContext.Session.GetString("UserName")</h6>
+                                                    <small class="text-muted d-block">Customer</small>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li><hr class="dropdown-divider"></li>
+                                        <li>
+                                            <a class="dropdown-item d-flex align-items-center" href="#">
+                                                <i class="bi bi-person me-2"></i> My Profile
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a class="dropdown-item d-flex align-items-center" href="#">
+                                                <i class="bi bi-gear me-2"></i> Settings
+                                            </a>
+                                        </li>
+                                        <li><hr class="dropdown-divider"></li>
+                                        <li>
+                                            <a href="@Url.Action("Logout", "Web")" class="dropdown-item d-flex align-items-center text-danger">
+                                                <i class="bi bi-power me-2"></i> Log Out
+                                            </a>
+                                        </li>
+                                    </ul>
+
+
+
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <marquee style="background-color: #7ab952; color: white;" behavior="" direction="right"> <span style="margin-left: 60px;">ONLY CASH ON DELIVERY AVAILABLE</span> <span style="margin-left: 60px;">  ONLY CASH ON DELIVERY AVAILABLE </span> <span style="margin-left: 60px;">ONLY CASH ON DELIVERY AVAILABLE</span><span style="margin-left: 60px;">ONLY CASH ON DELIVERY AVAILABLE</span><span style="margin-left: 60px;">ONLY CASH ON DELIVERY AVAILABLE</span><span style="margin-left: 60px;">ONLY CASH ON DELIVERY AVAILABLE</span></marquee>
+
+
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3">
+                    <div class="header__logo">
+                        <a href="@Url.Action("Home","web")"><img src="~/img/logo.png" alt=""></a>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <nav class="header__menu">
+                        <ul>
+                            <li class="active"><a href="@Url.Action("Home","web")">Home</a></li>
+                            <li><a href="@Url.Action("Vegetables_category" , "category")">Shop</a></li>
+                            <li>
+                                <a href="#">Pages</a>
+                                <ul class="header__menu__dropdown">
+                                    <li><a href="@Url.Action("shop_details","web")">Shop Details</a></li>
+
+                                    <li><a href="@Url.Action("Chechout","web")">Check Out</a></li>
+
+                                </ul>
+                            </li>
+                            <li><a href="@Url.Action("About","web")">About Us</a></li>
+                            <li><a href="@Url.Action("Contact", "web")">Contact</a></li>
+                        </ul>
+                    </nav>
+                </div>
+                <div class="col-lg-3">
+                    <div class="header__cart">
+                        <ul>
+                            <li><a href="#"><i class="fa fa-heart"></i> <span>1</span></a></li>
+                            <li><a href="@Url.Action("Shop_cart","web")"><i class="fa fa-shopping-bag"></i> <span>0</span></a></li>
+                        </ul>
+                        <div class="header__cart__price">item: <span>$0.00</span></div>
+                    </div>
+                </div>
+            </div>
+            <div class="humberger__open">
+                <i class="fa fa-bars"></i>
+            </div>
+        </div>
+    </header>
+    <!-- Header Section End -->
+    <section class="hero">
+        <div class="container">
+            <div class="row justify-content-center">
+          
+                <div class="col-lg-9 d-flex justify-content-center">
+                    <div class="hero__search">
+                        <div class="hero__search__form">
+                            <form action="@Url.Action("Search", "Category")" method="get">
+                                <input type="text" name="Search_input" placeholder="Search by productName, category, or brand...">
+                                <button type="submit" class="site-btn">SEARCH</button>
+                            </form>
+
+                        </div>
+                    
+                    </div>
+
+
+                 
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+
+    @if (Model != null && Model.Count() > 0)
+    {
+
+        <div class="container py-4">
+     
+            <div class="text-center mb-4">
+                <h2 class="fw-bold text-dark" style="letter-spacing: 0.5px;">
+                    Explore Our Exclusive Collection
+                </h2>
+                <p class="text-muted fs-5" style="max-width: 600px; margin: auto;">
+                    Discover top-quality products, carefully curated just for you.
+                </p>
+            </div>
+        
+
+          
+           
+                <div class="row justify-content-center">
+                @foreach (var product in Model)
+                {
+                    <div class="col-md-4 d-flex my-4 justify-content-center">
+                        <div class="product-card my-4 bg-white rounded-4 shadow-sm p-3 h-100 d-flex flex-column" style="width: 100%; max-width: 320px;">
+                            <span class="badge bg-danger position-absolute">New</span>
+                            <img src="~/ProductImages/@product.ProductImage" class="product-image w-100 rounded mb-3"
+                                 style="object-fit: contain; height: 200px;" alt="Product">
+                            <div class="p-3 flex-grow-1">
+                                <h5 class="fw-bold text-center">@product.ProductName</h5>
+                                <div class="d-flex justify-content-center align-items-center">
+                                    <div class="text-warning">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star-half-alt"></i>
+                                    </div>
+                                    <small class="text-muted ms-2">(4.7/5)</small>
+                                </div>
+                                <p class="text-muted small mt-2 text-center">@product.ProductDescription</p>
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <span style="color: #7fad39;" class="price fw-bold">Rs @product.ProductPrice</span>
+                                    <a href="@Url.Action("Shop_details","web",new{product.Product_id})" style="background-color: #7fad39; color: white;" class="btn btn px-3 py-1 rounded-pill">View Details</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+                </div>
+
+
+          
+       
+        </div>
+     
+    }
+
+       else {
+        <h2 style="background-color: #7fad39; color: white; margin:12px; padding: 10px; text-align: center; border-radius: 5px;">
+            No products found.
+            <p style=" color: white;">Your search did not match any result, try searching aything else.</p>
+        </h2>
+
+        }
+            <!-- Row End -->
+        
+    
+ 
+
+    <!-- Footer Section Begin -->
+    <footer class="footer spad">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 col-md-6 col-sm-6">
+                    <div class="footer__about">
+                        <div class="footer__about__logo">
+                            <a href="@Url.Action("Home","web")"><img src="~/img/logo.png" alt=""></a>
+                        </div>
+                        <ul>
+                            <li>Address: 60-49 Road 11378 New York</li>
+                            <li>Phone: +65 11.188.888</li>
+                            <li>Email: ogani@gmail.com</li>
+                   </ul>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 col-sm-6 offset-lg-1">
+                    <div class="footer__widget">
+                        <h6>Useful Links</h6>
+                        <ul>
+                            <li><a href="@Url.Action("Home","web")">Home</a></li>
+                            <li><a href="@Url.Action("About","web")">About Our Shop</a></li>
+                            <li><a href="@Url.Action("Contact","web")">Contact Us</a></li>
+                            <li><a href="@Url.Action("Chechout","web")">Checkout</a></li>
+                            <li><a href="@Url.Action("Shop_details","web")">Shop Details</a></li>
+                            <li><a href="#">Privacy Policy</a></li>
+                        </ul>
+
+                        <ul>
+                            <li><a href="@Url.Action("Vegetables_category","category")">Vegetables</a></li>
+                            <li><a href="@Url.Action("fruits_category","category")">Fresh Fruits</a></li>
+                            <li><a href="@Url.Action("Grocery_category","category")">Grocery</a></li>
+                            <li><a href="@Url.Action("Meat_category","category")">Meat & Sea Food</a></li>
+                            <li><a href="@Url.Action("Cosmetics_category","category")">Cosmetics</a></li>
+                            <li><a href="@Url.Action("Men_cloth_category","category")">Men Clothing</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-12">
+                    <div class="footer__widget">
+                        <h6>Join Our Newsletter Now</h6>
+                        <p>Get E-mail updates about our latest shop and special offers.</p>
+                        <form action="#">
+                            <input type="text" placeholder="Enter your mail">
+                            <button type="submit" class="site-btn">Subscribe</button>
+                        </form>
+                        <div class="footer__widget__social">
+                            <a href="#"><i class="fa fa-facebook"></i></a>
+                            <a href="#"><i class="fa fa-instagram"></i></a>
+                            <a href="#"><i class="fa fa-twitter"></i></a>
+                            <a href="#"><i class="fa fa-pinterest"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="footer__copyright">
+                        <div class="footer__copyright__text">
+                            <p>
+                                <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                                Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+                                <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                            </p>
+                        </div>
+                        <div class="footer__copyright__payment"><img src="/img/payment-item.png" alt=""></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- Footer Section End -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/categorypg_styling/lib/easing/easing.min.js"></script>
+    <script src="~/categorypg_styling/lib/waypoints/waypoints.min.js"></script>
+    <script src="~/categorypg_styling/lib/lightbox/js/lightbox.min.js"></script>
+    <script src="~/categorypg_styling/lib/owlcarousel/owl.carousel.min.js"></script>
+
+
+    <script src="~/categorypg_styling/js/main.js"></script>
+
+
+    <script src="~/aboutpg_styling/js/jquery.min.js"></script>
+    <script src="~/aboutpg_styling/js/jquery-migrate-3.0.1.min.js"></script>
+    <script src="~/aboutpg_styling/js/popper.min.js"></script>
+    <script src="~/aboutpg_styling/js/bootstrap.min.js"></script>
+    <script src="~/aboutpg_styling/js/jquery.easing.1.3.js"></script>
+    <script src="~/aboutpg_styling/js/jquery.waypoints.min.js"></script>
+    <script src="~/aboutpg_styling/js/jquery.stellar.min.js"></script>
+    <script src="~/aboutpg_styling/js/owl.carousel.min.js"></script>
+    <script src="~/aboutpg_styling/js/jquery.magnific-popup.min.js"></script>
+    <script src="~/aboutpg_styling/js/aos.js"></script>
+    <script src="~/aboutpg_styling/js/jquery.animateNumber.min.js"></script>
+    <script src="~/aboutpg_styling/js/bootstrap-datepicker.js"></script>
+    <script src="~/aboutpg_styling/js/scrollax.min.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
+    <script src="~/aboutpg_styling/js/google-map.js"></script>
+    <script src="~/aboutpg_styling/js/main.js"></script>
+
+    <!-- JavaScript Libraries -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+
+
+
+    <script src="~/js/jquery-3.3.1.min.js"></script>
+    <script src="~/js/bootstrap.min.js"></script>
+    <script src="~/js/jquery.nice-select.min.js"></script>
+    <script src="~/js/jquery-ui.min.js"></script>
+    <script src="~/js/jquery.slicknav.js"></script>
+    <script src="~/js/mixitup.min.js"></script>
+    <script src="~/js/owl.carousel.min.js"></script>
+    <script src="~/js/main.js"></script>
+
+    <script>
+        $(document).ready(function(){
+            $(".owl-carousel").owlCarousel({
+                loop: true,
+                margin: 10,
+                nav: true,
+                autoplay: true,
+                autoplayTimeout: 3000,
+                autoplayHoverPause: true,
+                items: 1
+            });
+        });
+    </script>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        function updateCartSummary() {
+            $.ajax({
+                url: '@Url.Action("CartSummary", "Cart")',
+                type: 'GET',
+                success: function (data) {
+                    $(".header__cart ul li a i.fa-shopping-bag + span").text(data.itemCount);
+                    $(".header__cart__price span").text("$" + data.totalPrice.toFixed(2));
+                }
+            });
+        }
+
+        $(document).ready(function () {
+            updateCartSummary(); // Page load pe update kare
+            setInterval(updateCartSummary, 5000); // Har 5 sec me update kare
+        });
+    </script>
+    <script src="~/assets/vendor/libs/jquery/jquery.js"></script>
+    <script src="~/assets/vendor/libs/popper/popper.js"></script>
+    <script src="~/assets/vendor/js/bootstrap.js"></script>
+    <script src="~/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js"></script>
+    <script src="~/assets/vendor/js/menu.js"></script>
+
+    <!-- endbuild -->
+    <!-- Vendors JS -->
+    <script src="~/assets/vendor/libs/apex-charts/apexcharts.js"></script>
+
+    <!-- Main JS -->
+    <script src="~/assets/js/main.js"></script>
+
+    <!-- Page JS -->
+    <script src="~/assets/js/dashboards-analytics.js"></script>
+</body>
+
+</html>

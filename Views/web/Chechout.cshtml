@@ -1,0 +1,153 @@
+﻿@model OnlineSuperMarket.Models.Order_Model
+@{
+    ViewData["Title"] = "Chechout";
+    Layout = "~/Views/Shared/weblayout.cshtml";
+}
+
+<style>
+
+    .owl-carousel .hero__item,
+    .owl-carousel .hero__item2,
+    .owl-carousel .hero__item3,
+    .owl-carousel .hero__item4 {
+        position: relative;
+        width: 100%;
+        height: 500px; /* Adjust height as needed */
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        object-fit: contain;
+    }
+
+    .hero__item img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain; /* Ensures full image is visible without cropping */
+    }
+
+    .hero__item {
+        background-image: url('/img/WhatsApp\ Image\ 2025-02-11\ at\ 1.25.51\ AM.jpeg'); /* Add actual image paths */
+    }
+
+    .hero__item2 {
+        background-image: url('/img/WhatsApp\ Image\ 2025-02-11\ at\ 12.21.44\ AM.jpeg');
+    }
+
+    .hero__item3 {
+        background-image: url('/img/WhatsApp\ Image\ 2025-02-11\ at\ 12.38.21\ AM.jpeg');
+    }
+
+    .hero__item4 {
+        background-image: url('/img/WhatsApp\ Image\ 2025-02-11\ at\ 2.49.40\ AM.jpeg');
+    }
+</style>
+<!-- Breadcrumb Section Begin -->
+<section class="breadcrumb-section set-bg" data-setbg="/img/breadcrumb.jpg">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <div class="breadcrumb__text">
+                    <h2>Checkout</h2>
+                    <div class="breadcrumb__option">
+                        <a href="@Url.Action("Chechout" , "web")">Home</a>
+                        <span>Checkout</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Breadcrumb Section End -->
+<!-- Checkout Section Begin -->
+<section class="checkout spad">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <h6>
+                    <span class="icon_tag_alt"></span> Have a coupon? <a href="#">Click here</a> to enter your code
+                </h6>
+            </div>
+        </div>
+        <div class="checkout__form">
+            <h4>Billing Details</h4>
+            <form asp-action="Checkout" asp-controller="web" method="post">
+                <div class="row">
+                    <div class="col-lg-8 col-md-6">
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="checkout__input">
+                                    <p>First Name<span>*</span></p>
+                                    <input name="First_Name" asp-for="First_Name" />
+                                    <span class="text-danger" asp-validation-for="First_Name"></span>
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="checkout__input">
+                                    <p>Last Name<span>*</span></p>
+                                    <input name="Last_Name" asp-for="Last_Name" />
+                                    <span class="text-danger" asp-validation-for="Last_Name"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="checkout__input">
+                            <p>State<span>*</span></p>
+                            <input name="State" asp-for="State" />
+                            <span class="text-danger" asp-validation-for="State"></span>
+                        </div>
+                        <div class="checkout__input">
+                            <p>Address<span>*</span></p>
+                            <input name="Address" asp-for="Address" />
+                            <span class="text-danger" asp-validation-for="Address"></span>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="checkout__input">
+                                    <p>Phone<span>*</span></p>
+                                    <input name="Phone" asp-for="Phone" />
+                                    <span class="text-danger" asp-validation-for="Phone"></span>
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="checkout__input">
+                                    <p>Email<span>*</span></p>
+                                    <input name="Customer_Email" asp-for="Customer_Email" />
+                                    <span class="text-danger" asp-validation-for="Customer_Email"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div  class="col-lg-4  col-md-6">
+                        <div style="padding:15px;" class="checkout__order">
+                            <h4>Your Order</h4>
+                            <div class="checkout__order__products">Products <span>Total</span></div>
+                            @if (ViewBag.CartItems != null)
+                            {
+                            <ul>
+                              
+                                @foreach (var item in ViewBag.CartItems)
+
+                                {
+                                   
+                                    <li>@item.Product?.ProductName <span>Rs:@item.TotalPrice</span></li>
+                                }
+                            </ul>
+                            <div class="checkout__order__subtotal">Subtotal <span>Rs:@ViewBag.TotalPrice</span></div>
+                                <div class="checkout__order__total">Total <span>Rs:@ViewBag.TotalPrice</span></div>
+                                }
+                            <button type="submit" class="site-btn">PLACE ORDER</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
+<!-- Checkout Section End -->
+<script src="~/js/jquery-3.3.1.min.js"></script>
+<script src="~/js/bootstrap.min.js"></script>
+<script src="~/js/jquery.nice-select.min.js"></script>
+<script src="~/js/jquery-ui.min.js"></script>
+<script src="~/js/jquery.slicknav.js"></script>
+<script src="~/js/mixitup.min.js"></script>
+<script src="~/js/owl.carousel.min.js"></script>
+<script src="~/js/main.js"></script>

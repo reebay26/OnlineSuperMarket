@@ -1,0 +1,97 @@
+﻿@model IEnumerable<OnlineSuperMarket.Models.Category>
+
+@{
+    ViewData["Title"] = "Category_details";
+    Layout = "~/Views/Shared/dashboardlayout.cshtml";
+}
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f8f9fa;
+        padding: 20px;
+    }
+
+    #st-head {
+        font-weight: bold;
+        font-size: 2.9rem;
+    }
+
+    .table {
+        background-color: white;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+    }
+
+    .table-hover tbody tr:hover {
+        background-color: #f1f1f1;
+    }
+
+    .table th {
+        background-color: #7fad39;
+        color: white;
+        text-transform: uppercase;
+    }
+
+    .btn-action {
+        display: inline-block;
+        padding: 5px 17px;
+        border-radius: 4px;
+        color: white;
+        text-decoration: none;
+    }
+
+    .btn-edit {
+        background-color: #7fad39;
+        color:white;
+    }
+
+    .btn-delete {
+        background-color: #7fad39;
+        color: white;
+    }
+
+    .btn-action:hover {
+        opacity: 0.9;
+    }
+</style>
+
+<div class="container mt-4">
+    <h2 class="my-5 text-center" id="st-head">Available Categories</h2>
+    
+    <div class="table-responsive">
+        <table class="table table-hover text-center">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>@Html.DisplayNameFor(model => model.First().category_name)</th>
+                    <th>@Html.DisplayNameFor(model => model.First().category_desc)</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.category_id</td>
+                        <td>@Html.DisplayFor(modelItem => item.category_name)</td>
+                        <td>@Html.DisplayFor(modelItem => item.category_desc)</td>
+                        <td>
+                            <a href="@Url.Action("Edit_category", "Admin", new { category_id = item.category_id })" class="btn btn-action btn-edit">
+                                Edit
+                            </a>
+
+
+                            <form action="@Url.Action("Delete_category", "Admin")" method="post" style="display:inline;">
+                                <input type="hidden" name="category_id" value="@item.category_id" />
+                                <button type="submit" class="btn btn-action btn-delete">Delete</button>
+                            </form>
+
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

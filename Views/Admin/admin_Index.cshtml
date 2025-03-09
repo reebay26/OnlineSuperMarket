@@ -1,0 +1,514 @@
+﻿
+@{
+    ViewData["Title"] = "admin_Index";
+    Layout = "~/Views/Shared/dashboardlayout.cshtml";
+}
+
+<!-- Content wrapper -->
+<div class="content-wrapper">
+    <!-- Content -->
+
+    <div class="container-xxl flex-grow-1 container-p-y">
+        <div class="row">
+            <div class="col-xxl-8 mb-6 order-0">
+                <div class="card">
+                    <div class="d-flex align-items-start row">
+                        <div class="col-sm-7">
+                            <div class="card-body">
+                                <h5 style="color: #7fad39; font-weight: bold;" class="card-title  mb-3">Welcome to Your Dashboard</h5>
+                                <p class="mb-6">
+                                    Manage inventory, track sales, and monitor store performance all in one place.<br />
+                                    Stay updated with the latest reports and insights.
+                                </p>
+
+                                <a href="javascript:;" style="background-color: #7fad39; color: white; padding: 10px 20px;" class="btn btn-sm ">View Reports</a>
+                            </div>
+                        </div>
+                        <div class="col-sm-5 text-center text-sm-left">
+                            <div class="card-body pb-0 px-0 px-md-6">
+                                <img src="~/assets/img/illustrations/man-with-laptop.png"
+                                     height="175"
+                                     class="scaleX-n1-rtl"
+                                     alt="View Badge User" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-4 order-1">
+                <div class="row">
+                    <div class="col-lg-6 col-md-12 col-6 mb-6">
+                        <div class="card h-100">
+                            <div class="card-body">
+                                <div class="card-title d-flex align-items-start justify-content-between mb-4">
+                                    <div class="avatar flex-shrink-0">
+                                        <img src="~/assets/img/icons/unicons/chart-success.png"
+                                             alt="chart success"
+                                             class="rounded" />
+                                    </div>
+                                    <div class="dropdown">
+                                        <button class="btn p-0"
+                                                type="button"
+                                                id="cardOpt3"
+                                                data-bs-toggle="dropdown"
+                                                aria-haspopup="true"
+                                                aria-expanded="false">
+                                            <i class="bx bx-dots-vertical-rounded text-muted"></i>
+                                        </button>
+                                        <div class="dropdown-menu dropdown-menu-end" aria-labelledby="cardOpt3">
+                                            <a class="dropdown-item" href="javascript:void(0);">View More</a>
+                                            <a class="dropdown-item" href="javascript:void(0);">Delete</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <p class="mb-1">Daily Sales</p>
+                                <h4 class="card-title mb-3">$12,628</h4>
+                                <small class="text-success fw-medium"><i class="bx bx-up-arrow-alt"></i> +72.80%</small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-12 col-6 mb-6">
+                        <div class="card h-100">
+                            <div class="card-body">
+                                <div class="card-title d-flex align-items-start justify-content-between mb-4">
+                                    <div class="avatar flex-shrink-0">
+                                        <img src="~/assets/img/icons/unicons/wallet-info.png"
+                                             alt="wallet info"
+                                             class="rounded" />
+                                    </div>
+                                    <div class="dropdown">
+                                        <button class="btn p-0"
+                                                type="button"
+                                                id="cardOpt6"
+                                                data-bs-toggle="dropdown"
+                                                aria-haspopup="true"
+                                                aria-expanded="false">
+                                            <i class="bx bx-dots-vertical-rounded text-muted"></i>
+                                        </button>
+                                        <div class="dropdown-menu dropdown-menu-end" aria-labelledby="cardOpt6">
+                                            <a class="dropdown-item" href="javascript:void(0);">View More</a>
+                                            <a class="dropdown-item" href="javascript:void(0);">Delete</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <p class="mb-1">Available Products</p>
+                                <h4 class="card-title mb-3">$4,679</h4>
+                                <small class="text-success fw-medium"><i class="bx bx-up-arrow-alt"></i> +28.42%</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Sales & Customer Insights -->
+            <div class="col-12 col-xxl-8 order-2 order-md-3 order-xxl-2 mb-6">
+                <div class="cardrevenue" style="background: #fff; border-radius: 10px; padding: 20px; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);">
+                    <div class="row row-bordered g-0">
+
+                        <!-- Section Header -->
+                        <div class="col-lg-12">
+                            <div class="card-header d-flex align-items-center justify-content-between" style="border-bottom: 2px solid #7fad39; padding-bottom: 10px;">
+                                <h5 class="m-0" style="color: #333; font-weight: 600;">Sales & Customer Insights</h5>
+                            </div>
+                        </div>
+
+                        <!-- Subsections (Cards) -->
+                        <div class="col-lg-12  my-4 d-flex flex-wrap justify-content-between">
+
+                            <!-- Sales This Month -->
+                            <div class="sub-card d-flex align-items-center justify-content-between" style="background: #fff; border: 3px solid #d8ddd1; border-radius: 8px; padding: 15px; width: 32%; margin-bottom: 12px;">
+                                <div>
+                                    <h6 style="margin: 0; font-weight: 500;">Sales This Month</h6>
+                                    <p class="revenue-amount" style="font-size: 18px; font-weight: bold; color:#7fad39">₹12.3k</p>
+                                </div>
+                                <i class="fa-solid fa-chart-line" style="font-size: 32px; color: #7fad39;"></i>
+                            </div>
+
+                            <!-- Sales Last Month -->
+                            <div class="sub-card d-flex align-items-center justify-content-between" style="background: #fff; border: 3px solid #d8ddd1;  border-radius: 8px; padding: 15px; width: 32%; margin-bottom: 12px;">
+                                <div>
+                                    <h6 style="margin: 0; font-weight: 500;">Sales Last Month</h6>
+                                    <p class="revenue-amount" style="font-size: 18px; font-weight: bold; color: #7fad39">₹15.8k</p>
+                                </div>
+                                <i class="fa-solid fa-chart-bar" style="font-size: 32px; color: #7fad39;"></i>
+                            </div>
+
+                            <!-- Top-Selling Item -->
+                            <div class="sub-card d-flex align-items-center justify-content-between" style="background: #fff; border: 3px solid #d8ddd1;  border-radius: 8px; padding: 15px; width: 32%; margin-bottom: 12px;">
+                                <div>
+                                    <h6 style="margin: 0; font-weight: 500;">Top-Selling Item</h6>
+                                    <p class="product-info" style="font-size: 16px; font-weight: bold; color: #7fad39">Organic Apples - 8.5k</p>
+                                </div>
+                                <i class="fa-solid fa-apple-alt" style="font-size: 32px; color: #7fad39;"></i>
+                            </div>
+
+                            <!-- Total Orders Processed -->
+                            <div class="sub-card d-flex align-items-center justify-content-between" style="background: #fff; border: 3px solid #d8ddd1;  border-radius: 8px; padding: 15px; width: 32%; margin-bottom: 12px;">
+                                <div>
+                                    <h6 style="margin: 0; font-weight: 500;">Total Orders </h6>
+                                    <p class="product-info" style="font-size: 16px; color: #7fad39; font-weight: bold; ">1,523 Orders</p>
+                                </div>
+                                <i class="fa-solid fa-receipt" style="font-size: 32px; color: #7fad39;"></i>
+                            </div>
+
+                            <!-- Total Customers -->
+                            <div class="sub-card d-flex align-items-center justify-content-between" style="background: #fff; border: 3px solid #d8ddd1;  border-radius: 8px; padding: 15px; width: 32%; margin-bottom: 12px;">
+                                <div>
+                                    <h6 style="margin: 0; font-weight: 500;">Total Customers</h6>
+                                    <p class="product-info" style="font-size: 18px; font-weight: bold; color: #7fad39;">3.2k</p>
+                                </div>
+                                <i class="fa-solid fa-users" style="font-size: 32px; color: #7fad39;"></i>
+                            </div>
+
+                            <!-- New Customers This Month -->
+                            <div class="sub-card d-flex align-items-center justify-content-between" style="background: #fff; border: 3px solid #d8ddd1;  border-radius: 8px; padding: 15px; width: 32%; margin-bottom: 12px;">
+                                <div>
+                                    <h6 style="margin: 0; font-weight: 500;">New Customers </h6>
+                                    <p class="product-info" style="font-size: 16px; font-weight: bold;color: #7fad39; ;">327 New Sign-ups</p>
+                                </div>
+                                <i class="fa-solid fa-user-plus" style="font-size: 32px; color: #7fad39;"></i>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+            <div class="col-12 col-md-8 col-lg-12 col-xxl-4 order-3 order-md-2">
+                <div class="row">
+                    <div class="col-6 mb-6">
+                        <div class="card h-100">
+                            <div class="card-body">
+                                <div class="card-title d-flex align-items-start justify-content-between mb-4">
+                                    <div class="avatar flex-shrink-0">
+                                        <img src="~/assets/img/icons/unicons/paypal.png" alt="paypal" class="rounded" />
+                                    </div>
+                                    <div class="dropdown">
+                                        <button class="btn p-0"
+                                                type="button"
+                                                id="cardOpt4"
+                                                data-bs-toggle="dropdown"
+                                                aria-haspopup="true"
+                                                aria-expanded="false">
+                                            <i class="bx bx-dots-vertical-rounded text-muted"></i>
+                                        </button>
+                                        <div class="dropdown-menu dropdown-menu-end" aria-labelledby="cardOpt4">
+                                            <a class="dropdown-item" href="javascript:void(0);">View More</a>
+                                            <a class="dropdown-item" href="javascript:void(0);">Delete</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <p class="mb-1">Products Sold</p>
+                                <h4 class="card-title mb-3">$2,456</h4>
+                                <small class="text-danger fw-medium"><i class="bx bx-down-arrow-alt"></i> -14.82%</small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-6 mb-6">
+                        <div class="card h-100">
+                            <div class="card-body">
+                                <div class="card-title d-flex align-items-start justify-content-between mb-4">
+                                    <div class="avatar flex-shrink-0">
+                                        <img src="~/assets/img/icons/unicons/cc-primary.png" alt="Credit Card" class="rounded" />
+                                    </div>
+                                    <div class="dropdown">
+                                        <button class="btn p-0"
+                                                type="button"
+                                                id="cardOpt1"
+                                                data-bs-toggle="dropdown"
+                                                aria-haspopup="true"
+                                                aria-expanded="false">
+                                            <i class="bx bx-dots-vertical-rounded text-muted"></i>
+                                        </button>
+                                        <div class="dropdown-menu" aria-labelledby="cardOpt1">
+                                            <a class="dropdown-item" href="javascript:void(0);">View More</a>
+                                            <a class="dropdown-item" href="javascript:void(0);">Delete</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <p class="mb-1">Total Sales</p>
+                                <h4 class="card-title mb-3">$14,857</h4>
+                                <small class="text-success fw-medium"><i class="bx bx-up-arrow-alt"></i> +28.14%</small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 mb-6">
+                        <div class="card">
+                            <div class="card-body d-flex justify-content-center">
+                                <img src="~/assets/img/WhatsApp Image 2025-02-11 at 1.25.51 AM.jpeg" alt="Profile Report" class="img-fluid">
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <!-- Order Statistics -->
+            <div class="col-md-6 col-lg-4 col-xl-4 order-0 mb-6">
+                <div class="card h-100">
+                    <div class="card-header d-flex justify-content-between">
+                        <div class="card-title mb-0">
+                            <h5 class="mb-1 me-2">Order Statistics</h5>
+                            <p class="card-subtitle">42.82k Total Sales</p>
+                        </div>
+                        <div class="dropdown">
+                            <button class="btn text-muted p-0"
+                                    type="button"
+                                    id="orederStatistics"
+                                    data-bs-toggle="dropdown"
+                                    aria-haspopup="true"
+                                    aria-expanded="false">
+                                <i class="bx bx-dots-vertical-rounded bx-lg"></i>
+                            </button>
+                            <div class="dropdown-menu dropdown-menu-end" aria-labelledby="orederStatistics">
+                                <a class="dropdown-item" href="javascript:void(0);">Select All</a>
+                                <a class="dropdown-item" href="javascript:void(0);">Refresh</a>
+                                <a class="dropdown-item" href="javascript:void(0);">Share</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-center mb-6">
+                            <div class="d-flex flex-column align-items-center gap-1">
+                                <h3 class="mb-1">8,258</h3>
+                                <small>Total Orders</small>
+                            </div>
+                            <div id="orderStatisticsChart"></div>
+                        </div>
+                        <ul class="p-0 m-0">
+                            <li class="d-flex align-items-center mb-5">
+                                <div class="avatar flex-shrink-0 me-3">
+                                    <span class="avatar-initial rounded bg-label-primary">
+                                        <i class="bx bx-mobile-alt"></i>
+                                    </span>
+                                </div>
+                                <div class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-2">
+                                    <div class="me-2">
+                                        <h6 class="mb-0">Electronic</h6>
+                                        <small>Mobile, Earbuds, TV</small>
+                                    </div>
+                                    <div class="user-progress">
+                                        <h6 class="mb-0">82.5k</h6>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="d-flex align-items-center mb-5">
+                                <div class="avatar flex-shrink-0 me-3">
+                                    <span class="avatar-initial rounded bg-label-success"><i class="bx bx-closet"></i></span>
+                                </div>
+                                <div class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-2">
+                                    <div class="me-2">
+                                        <h6 class="mb-0">Fashion</h6>
+                                        <small>T-shirt, Jeans, Shoes</small>
+                                    </div>
+                                    <div class="user-progress">
+                                        <h6 class="mb-0">23.8k</h6>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="d-flex align-items-center mb-5">
+                                <div class="avatar flex-shrink-0 me-3">
+                                    <span class="avatar-initial rounded bg-label-info"><i class="bx bx-home-alt"></i></span>
+                                </div>
+                                <div class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-2">
+                                    <div class="me-2">
+                                        <h6 class="mb-0">Decor</h6>
+                                        <small>Fine Art, Dining</small>
+                                    </div>
+                                    <div class="user-progress">
+                                        <h6 class="mb-0">849k</h6>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="d-flex align-items-center">
+                                <div class="avatar flex-shrink-0 me-3">
+                                    <span class="avatar-initial rounded bg-label-secondary">
+                                        <i class="bx bx-football"></i>
+                                    </span>
+                                </div>
+                                <div class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-2">
+                                    <div class="me-2">
+                                        <h6 class="mb-0">Sports</h6>
+                                        <small>Football, Cricket Kit</small>
+                                    </div>
+                                    <div class="user-progress">
+                                        <h6 class="mb-0">99</h6>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!--/ Order Statistics -->
+            <!-- Report Generation Overview -->
+            <div class="col-md-6 col-lg-4 order-1 mb-6">
+                <div class="card h-100 shadow-lg border-0" style="background-color: #f9f9f9;">
+                    <div class="card-header d-flex justify-content-between align-items-center text-white" style="background-color: #7fad39; ">
+                        <h5 style="color: #fff;" class="mb-0">Report Generation</h5>
+                        <i class="bx bx-file bx-md"></i>
+                    </div>
+                    <div class="card-body p-3">
+                        <p><strong>Get detailed reports on your supermarket's performance:</strong></p>
+                        <ul>
+                            <li>Track monthly and weekly revenue trends.</li>
+                            <li>Analyze sales by brand and category.</li>
+                            <li>Identify top-performing products.</li>
+                            <li>Optimize inventory based on sales data.</li>
+                        </ul>
+                        <div class="nav-align-top mt-3">
+                            <ul class="nav nav-pills nav-fill" role="tablist" style="border-bottom: 2px solid #7fad39;">
+                           
+                                <li class="nav-item">
+                                    <button class="nav-link text-white" style="background-color: #7fad39; border-radius: 5px;" role="tab" data-bs-toggle="tab" data-bs-target="#brandReport">
+                                        Brand-wise
+                                    </button>
+                                </li>
+                                <li class="nav-item">
+                                    <button class="nav-link text-white" style="background-color: #7fad39; border-radius: 5px;" role="tab" data-bs-toggle="tab" data-bs-target="#categoryReport">
+                                        Category-wise
+                                    </button>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="tab-content p-3">
+                          
+                            <div class="tab-pane fade" id="brandReport">
+                                <h6 class="text-success">Brand-wise Report</h6>
+                                <p>Analyze sales and profits by brand.</p>
+                                <a href="@Url.Action("ExportBrandReport","Admin")" class="btn w-100" style="background-color: #7fad39; color: white;">Download Excel</a>
+                            </div>
+                            <div class="tab-pane fade" id="categoryReport">
+                                <h6 class="text-success">Category-wise Report</h6>
+                                <p>Get insights into sales by category.</p>
+                                <a href="@Url.Action("ExportCategoryReport","Admin")" class="btn w-100" style="background-color: #7fad39; color: white;">Download Excel</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--/ Report Generation Overview -->
+            <!-- Transactions -->
+            <div class="col-md-6 col-lg-4 order-2 mb-6">
+                <div class="card h-100">
+                    <div class="card-header d-flex align-items-center justify-content-between">
+                        <h5 class="card-title m-0 me-2">Transactions</h5>
+                        <div class="dropdown">
+                            <button class="btn text-muted p-0"
+                                    type="button"
+                                    id="transactionID"
+                                    data-bs-toggle="dropdown"
+                                    aria-haspopup="true"
+                                    aria-expanded="false">
+                                <i class="bx bx-dots-vertical-rounded bx-lg"></i>
+                            </button>
+                            <div class="dropdown-menu dropdown-menu-end" aria-labelledby="transactionID">
+                                <a class="dropdown-item" href="javascript:void(0);">Last 28 Days</a>
+                                <a class="dropdown-item" href="javascript:void(0);">Last Month</a>
+                                <a class="dropdown-item" href="javascript:void(0);">Last Year</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body pt-4">
+                        <ul class="p-0 m-0">
+                            <li class="d-flex align-items-center mb-6">
+                                <div class="avatar flex-shrink-0 me-3">
+                                    <img src="~/assets/img/icons/unicons/paypal.png" alt="User" class="rounded" />
+                                </div>
+                                <div class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-2">
+                                    <div class="me-2">
+                                        <small class="d-block">Paypal</small>
+                                        <h6 class="fw-normal mb-0">Send money</h6>
+                                    </div>
+                                    <div class="user-progress d-flex align-items-center gap-2">
+                                        <h6 class="fw-normal mb-0">+82.6</h6>
+                                        <span class="text-muted">USD</span>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="d-flex align-items-center mb-6">
+                                <div class="avatar flex-shrink-0 me-3">
+                                    <img src="~/assets/img/icons/unicons/wallet.png" alt="User" class="rounded" />
+                                </div>
+                                <div class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-2">
+                                    <div class="me-2">
+                                        <small class="d-block">Wallet</small>
+                                        <h6 class="fw-normal mb-0">Mac'D</h6>
+                                    </div>
+                                    <div class="user-progress d-flex align-items-center gap-2">
+                                        <h6 class="fw-normal mb-0">+270.69</h6>
+                                        <span class="text-muted">USD</span>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="d-flex align-items-center mb-6">
+                                <div class="avatar flex-shrink-0 me-3">
+                                    <img src="~/assets/img/icons/unicons/chart.png" alt="User" class="rounded" />
+                                </div>
+                                <div class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-2">
+                                    <div class="me-2">
+                                        <small class="d-block">Transfer</small>
+                                        <h6 class="fw-normal mb-0">Refund</h6>
+                                    </div>
+                                    <div class="user-progress d-flex align-items-center gap-2">
+                                        <h6 class="fw-normal mb-0">+637.91</h6>
+                                        <span class="text-muted">USD</span>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="d-flex align-items-center mb-6">
+                                <div class="avatar flex-shrink-0 me-3">
+                                    <img src="~/assets/img/icons/unicons/cc-primary.png" alt="User" class="rounded" />
+                                </div>
+                                <div class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-2">
+                                    <div class="me-2">
+                                        <small class="d-block">Credit Card</small>
+                                        <h6 class="fw-normal mb-0">Ordered Food</h6>
+                                    </div>
+                                    <div class="user-progress d-flex align-items-center gap-2">
+                                        <h6 class="fw-normal mb-0">-838.71</h6>
+                                        <span class="text-muted">USD</span>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="d-flex align-items-center mb-6">
+                                <div class="avatar flex-shrink-0 me-3">
+                                    <img src="~/assets/img/icons/unicons/wallet.png" alt="User" class="rounded" />
+                                </div>
+                                <div class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-2">
+                                    <div class="me-2">
+                                        <small class="d-block">Wallet</small>
+                                        <h6 class="fw-normal mb-0">Starbucks</h6>
+                                    </div>
+                                    <div class="user-progress d-flex align-items-center gap-2">
+                                        <h6 class="fw-normal mb-0">+203.33</h6>
+                                        <span class="text-muted">USD</span>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="d-flex align-items-center">
+                                <div class="avatar flex-shrink-0 me-3">
+                                    <img src="~/assets/img/icons/unicons/cc-warning.png" alt="User" class="rounded" />
+                                </div>
+                                <div class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-2">
+                                    <div class="me-2">
+                                        <small class="d-block">Mastercard</small>
+                                        <h6 class="fw-normal mb-0">Ordered Food</h6>
+                                    </div>
+                                    <div class="user-progress d-flex align-items-center gap-2">
+                                        <h6 class="fw-normal mb-0">-92.45</h6>
+                                        <span class="text-muted">USD</span>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!--/ Transactions -->
+        </div>
+    </div>
+    <!-- / Content -->
+

@@ -1,0 +1,134 @@
+﻿@model IEnumerable<OnlineSuperMarket.Models.Product_Model>
+
+@{
+    ViewData["Title"] = "Products_details";
+    Layout = "~/Views/Shared/dashboardlayout.cshtml";
+}
+
+<style>
+    body {
+    font-family: Arial, sans-serif;
+    background-color: #f8f9fa;
+    padding: 20px;
+    }
+
+    #st-head {
+    font-weight: bold;
+    font-size: 2.9rem;
+    }
+
+    .table {
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    }
+
+    .table-hover tbody tr:hover {
+    background-color: #f1f1f1;
+    }
+
+    .table th {
+    background-color: #7fad39;
+    color: white;
+    text-transform: uppercase;
+    }
+
+    .btn-action {
+    display: inline-block;
+    padding: 5px 17px;
+    border-radius: 4px;
+    color: white;
+    text-decoration: none;
+    cursor: pointer; /* Ensure the cursor changes on hover */
+    }
+
+
+    .btn-edit {
+    background-color: #7fad39;
+    }
+
+    .btn-delete {
+    background-color: #7fad39;
+    }
+
+    .btn-action:hover {
+    opacity: 0.9;
+    }
+</style>
+
+<div class="container mt-4">
+    <h2 class="my-5 text-center" id="st-head">Available Brands</h2>
+    <div class="table-responsive">
+        <table class="table table-hover text-center">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.ProductName)
+                    </th>
+                    <th>
+                        Category ID
+                    </th>
+                    <th>
+                        Brand ID
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.ProductPrice)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.ProductQuantity)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.ProductDescription)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.ProductImage)
+                    </th>
+                    <th>
+                        Action
+                    </th>
+                </tr>
+                <tbody>
+                    @foreach (var item in Model) {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.ProductName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.product_category)
+                            </td>
+                            <td>
+                                @if(item.product_brand==null){
+                                    <p>BrandId is null</p>
+                                }
+                                else
+                                {
+                                    @Html.DisplayFor(modelItem => item.product_brand)
+                                }
+                            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProductPrice)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProductQuantity)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProductDescription)
+            </td>
+                        <td>
+                            <img height="80px" src="~/ProductImages/@Html.DisplayFor(modelItem => item.ProductImage)" alt="Alternate Text" />
+                        </td>
+            <td>
+                            <a href="@Url.Action("Update_product", "Admin", new {product_id=  item.Product_id})" class="btn btn-action btn-edit">Update</a>
+
+                            <form action="@Url.Action("Delete_products", "Admin")" method="post" ;">
+                                <input type="hidden" name="Product_id" value="@item.Product_id" />
+                                <button type="submit" class=" my-2 btn btn-action btn-delete">Delete</button>
+                            </form>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+</div>
+</div>

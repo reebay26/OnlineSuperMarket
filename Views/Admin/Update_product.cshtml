@@ -1,0 +1,294 @@
+﻿@model OnlineSuperMarket.Models.Product_Model
+
+@{
+    Layout = "~/Views/Shared/dashboardlayout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Update_brand</title>
+</head>
+<style>
+
+    .icon-background {
+        background-color: rgb(251, 203, 115); /* Orange background */
+        border-radius: 20%; /* Circular background */
+        width: 40px; /* Adjust width */
+        height: 38px; /* Adjust height */
+        display: flex; /* Flexbox for centering */
+        align-items: center; /* Vertical centering */
+        justify-content: center; /* Horizontal centering */
+    }
+
+        .icon-background i {
+            font-size: 24px; /* Adjust icon size */
+        }
+
+    .icon2-background {
+        background-color: rgb(206, 158, 245); /* Orange background */
+        border-radius: 20%; /* Circular background */
+        width: 40px; /* Adjust width */
+        height: 38px; /* Adjust height */
+        display: flex; /* Flexbox for centering */
+        align-items: center; /* Vertical centering */
+        justify-content: center; /* Horizontal centering */
+    }
+
+        .icon2-background i {
+            font-size: 24px; /* Adjust icon size */
+        }
+
+    .cardrevenue {
+        background-color: #f9f9f9; /* Light background for the card */
+        border-radius: 10px; /* Rounded corners */
+        padding: 20px; /* Padding inside the card */
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    }
+
+    .sub-card {
+        background-color: #ffffff; /* Card background color */
+        border: 1px solid #e0e0e0; /* Light border for card separation */
+        border-radius: 8px; /* Rounded corners */
+        padding: 16px; /* Inner spacing for the card */
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+        margin-bottom: 20px; /* Spacing between cards */
+        transition: transform 0.3s; /* Smooth transition on hover */
+        width: calc(48% - 10px); /* Adjust width for two-column layout */
+    }
+
+    .image-upload-container {
+        display: flex;
+        align-items: center; /* Center both vertically */
+        gap: 20px; /* Space between image and input */
+    }
+
+    .image-preview img {
+    
+        height: 120px;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+        padding: 5px;
+        background-color: #f9f9f9;
+    }
+
+    .file-input {
+        flex: 1; /* Allow input to take remaining space */
+    }
+
+
+        .sub-card:hover {
+            transform: translateY(-4px); /* Lift effect on hover */
+        }
+
+        .sub-card h6 {
+            font-size: 18px; /* Font size for the heading */
+            color: #333333; /* Darker color for the heading */
+        }
+
+    .revenue-amount,
+    .product-info {
+        font-size: 24px; /* Font size for the revenue amount and product info */
+        color: #4CAF50; /* Default color for revenue */
+    }
+
+    .product-info {
+        color: #FF5722; /* Color for product info */
+    }
+
+    .icon {
+        font-size: 58px; /* Icon size */
+        margin-left: 16px; /* Add left margin for spacing */
+    }
+
+    /* Responsive Styles */
+    media (max-width: 768px) {
+        .sub-card
+
+    {
+        flex-direction: column; /* Stack elements vertically on smaller screens */
+        align-items: flex-start; /* Align items to the start */
+    }
+
+    .icon {
+        margin-left: 0; /* Remove left margin on smaller screens */
+        margin-top: 8px; /* Add top margin for separation */
+    }
+
+    }
+
+    .container {
+        max-width: 90%; /* Increased width */
+        margin: 2rem auto;
+        background-color: #ffffff; /* White background for the form container */
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    h2 {
+        text-align: center;
+        margin-bottom: 20px;
+        color: #333; /* Dark color for heading */
+        font-weight: bolder;
+    }
+
+    .form-group {
+        margin-bottom: 15px;
+    }
+
+    label {
+        display: block;
+        font-weight: bold;
+        margin-bottom: 5px;
+        color: #7fad39; /* Purple color for labels */
+    }
+
+    input[type="text"],
+    input[type="number"],
+    textarea,
+    select {
+        width: 100%; /* Full width */
+        padding: 10px;
+        font-size: 16px;
+        border: 1px solid #f2f2f4; /* Purple border */
+        border-radius: 4px;
+        background-color: #f4f4f4; /* Light gray background for inputs */
+        color: #333; /* Dark text for inputs */
+    }
+
+    select {
+        cursor: pointer;
+    }
+
+    .form-group-inline {
+        display: flex;
+        justify-content: space-between;
+        gap: 15px;
+    }
+
+        .form-group-inline .form-group {
+            flex: 1;
+        }
+
+    .btn, .btn-reset {
+        display: block;
+        width: 100%; /* Full width */
+        background-color: #7fad39; /* Purple button */
+        color: white;
+        border: none;
+        padding: 10px;
+        font-size: 16px;
+        border-radius: 4px;
+        cursor: pointer;
+        margin-top: 10px; /* Space between buttons */
+    }
+
+        .btn:hover {
+            background-color: #7fad39; /* Purple button */
+            color: white;
+        }
+
+    .btn-reset {
+        background-color: #4b7014; /* Red for reset button */
+    }
+
+        .btn-reset:hover {
+            background-color: #7fad39;
+            color: white; /* Darker red on hover */
+        }
+
+    .bg-menu-theme .menu-inner > .menu-item.active:before {
+        background: #7fad39;
+    }
+</style>
+<body>
+<div class="container">
+    <h2>Update Brand</h2>
+            <form asp-action="Update_product" enctype="multipart/form-data" asp-controller="Admin" method="post">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <input type="hidden" value="@Model.Product_id" name="Product_id" asp-for="Product_id" />
+                <div class="form-group">
+                    <label asp-for="ProductName" class="control-label"></label>
+                    <input asp-for="ProductName" value="@Model.ProductName" name="ProductName" class="form-control" />
+                    <span asp-validation-for="ProductName" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="product_category" class="control-label"></label>
+            <select asp-for="product_category" name="Product_category" class="form-control" asp-items="ViewBag.product_category">
+                        <option value="@Model.Category.category_id">@Model.Category.category_name</option>
+                        @foreach(var items in ViewBag.Category)
+                        {
+                            <option value="@items.category_id">@items.category_name</option>
+                        }
+                    </select>
+                    <span asp-validation-for="product_category" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="product_brand" class="control-label"></label>
+
+                    <select asp-for="product_brand" name="product_brand" class="form-control" asp-items="ViewBag.Brand">
+                        @if(Model.brand!=null){
+                            <option value="@Model.brand.brand_id">@Model.brand.brand_name</option>
+                        }
+                       
+                            <option >select an option </option>
+                            @foreach (var items in ViewBag.Brand)
+                            {
+                                <option value="@items.brand_id">@items.brand_name</option>
+                            }
+                       
+
+                    
+                     
+                       
+               </select>
+                <span asp-validation-for="product_brand" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ProductPrice" class="control-label"></label>
+                <input asp-for="ProductPrice" value="@Model.ProductPrice" name="ProductPrice" class="form-control" />
+                <span asp-validation-for="ProductPrice" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ProductQuantity" class="control-label"></label>
+                <input asp-for="ProductQuantity" name="ProductQuantity"  value="@Model.ProductQuantity" class="form-control" />
+                <span asp-validation-for="ProductQuantity" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ProductDescription" class="control-label"></label>
+                    <input asp-for="ProductDescription" name="ProductDescription" value="@Model.ProductDescription" class="form-control" />
+                <span asp-validation-for="ProductDescription" class="text-danger"></span>
+            </div>
+    
+                <div class="form-group image-upload-container">
+                <div class="file-input">
+                    <label asp-for="ProductImage" class="control-label"></label>
+                    <input asp-for="ProductImage" type="file" name="ProductImage" class="form-control" value="@Model.ProductImage" />
+                    <span asp-validation-for="ProductImage" class="text-danger"></span>
+                </div>
+                    <div class="image-preview">
+                        @if (!string.IsNullOrEmpty(Model.ProductImage))
+                        {
+                            <img src="~/ProductImages/@Model.ProductImage" alt="Product Image" />
+                        }
+                    </div>
+                  
+                </div>
+
+
+     
+
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+
+
+
+
+</body>
+</html>

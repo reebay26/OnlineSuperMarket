@@ -1,0 +1,94 @@
+﻿@model OnlineSuperMarket.Models.Register_model
+
+@{
+    Layout = null;
+    var error = TempData["Error"] = "Please login first to add items to cart.";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up - Online Supermarket</title>
+    <link rel="stylesheet" href="~/ogani_styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .blob {
+        position: absolute;
+        border-radius: 50%;
+        overflow: hidden;
+        }
+
+        .blob img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        }
+
+        .blob-top-right {
+        width: 220px;
+        height: 220px;
+        top: -40px;
+        right: -40px;
+        transform: rotate(-15deg);
+        }
+
+        .blob-bottom-left {
+        width: 150px;
+        height: 150px;
+        bottom: -30px;
+        left: -50px;
+        transform: rotate(-15deg);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+   
+        <div class="card">
+
+            <div style="background-color: white;" class="blob blob-top-right">
+                <img src="~/img/blob.png" alt="Top Decoration">
+            </div>
+
+            <div class="blob blob-bottom-left">
+                <img src="~/img/fruit blob.png" alt="Bottom Decoration">
+            </div>
+       
+            <h2>Sign in</h2>
+            <p class="subtitle">Log in and start shopping with us</p>
+
+            <h6>@ViewBag.ErrorMessage</h6>
+            <form asp-action="Login" asp-controller="web" method="post" class="signup-form">
+                @Html.AntiForgeryToken()
+           
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+             
+                <div class="form-group">
+                    <label asp-for="User_email" class="control-label"></label>
+                    <input asp-for="User_email" name="User_email" id="User_email" type="email" class="form-control" placeholder="you@example.com" required />
+                    <span asp-validation-for="User_email" class="text-danger"></span>
+                </div>
+
+             
+
+                <div class="form-group">
+                    <label asp-for="User_password" class="control-label"></label>
+              
+                        <input asp-for="User_password" name="User_password" id="User_password" type="password" class="form-control" placeholder="••••••••" required />
+                       
+              
+                    <span asp-validation-for="User_password" class="text-danger"></span>
+                </div>
+
+                <button type="submit" class="submit-btn">Sign In</button>
+                <p class="signin-link">New to Ogani? <a href="@Url.Action("Register","web")">Register</a></p>
+                <p class="signin-link">forgot Password? <a href="@Url.Action("Forgot_Password","web")">forgot Password</a></p>
+            </form>
+        </div>
+    </div>
+
+ 
+</body>
+</html>

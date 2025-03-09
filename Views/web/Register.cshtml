@@ -1,0 +1,116 @@
+﻿@model OnlineSuperMarket.Models.Register_model
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up - Online Supermarket</title>
+    <link rel="stylesheet" href="~/ogani_styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .blob {
+            position: absolute;
+            border-radius: 50%;
+            overflow: hidden;
+        }
+
+            .blob img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+
+        .blob-top-right {
+            width: 220px;
+            height: 220px;
+            top: -40px;
+            right: -40px;
+            transform: rotate(-15deg);
+        }
+
+        .blob-bottom-left {
+            width: 150px;
+            height: 150px;
+            bottom: -30px;
+            left: -50px;
+            transform: rotate(-15deg);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="card">
+            <div style="background-color: white;" class="blob blob-top-right">
+                <img src="~/img/blob.png" alt="Top Decoration">
+            </div>
+
+            <div class="blob blob-bottom-left">
+                <img src="~/img/fruit blob.png" alt="Bottom Decoration">
+            </div>
+
+            <h2>Create an account</h2>
+            <p class="subtitle">Sign up and start shopping with us</p>
+
+            <form asp-action="Register" method="post" class="signup-form">
+                @Html.AntiForgeryToken()
+                <input type="hidden" asp-for="User_role" value="customer" />
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="User_name" class="control-label"></label>
+                    <input asp-for="User_name" name="User_name" id="User_name" class="form-control" placeholder="John Doe" required />
+                    <span asp-validation-for="User_name" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="User_email" class="control-label"></label>
+                    <input asp-for="User_email" name="User_email" id="User_email" type="email" class="form-control" placeholder="you@example.com" required />
+                    <span asp-validation-for="User_email" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="User_contact" class="control-label"></label>
+                    <input asp-for="User_contact" name="User_contact" id="User_contact" class="form-control" placeholder="Your contact no" required />
+                    <span asp-validation-for="User_contact" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="User_password" class="control-label"></label>
+                    <div class="password-input">
+                        <input asp-for="User_password" name="User_password" id="User_password" type="password" class="form-control" placeholder="••••••••" required />
+                        <button type="button" class="toggle-password" onclick="togglePassword('User_password')">
+                            <i class="far fa-eye"></i>
+                        </button>
+                    </div>
+                    <span asp-validation-for="User_password" class="text-danger"></span>
+                </div>
+
+                <button type="submit" class="submit-btn">Sign up</button>
+
+                <p class="signin-link">Already have an account? <a href="@Url.Action("login","web")">Sign in</a></p>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        function togglePassword(fieldId) {
+            const passwordInput = document.getElementById(fieldId);
+            const toggleButton = passwordInput.nextElementSibling.querySelector('i');
+
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+                toggleButton.classList.remove('fa-eye');
+                toggleButton.classList.add('fa-eye-slash');
+            } else {
+                passwordInput.type = 'password';
+                toggleButton.classList.remove('fa-eye-slash');
+                toggleButton.classList.add('fa-eye');
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,256 @@
+﻿
+@{
+    ViewData["Title"] = "Vegetables_category";
+    Layout = "~/Views/Shared/weblayout.cshtml";
+}
+<link rel="stylesheet" href="~/categorypg_styling/css/bootstrap.min.css">
+
+<!-- Libraries Stylesheet -->
+<link href="~/categorypg_styling/lib/lightbox/css/lightbox.min.css" rel="stylesheet">
+<link href="~/categorypg_styling/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+<link href="~/categorypg_styling/css/style.css" rel="stylesheet">
+<style>
+    .owl-carousel .hero__item,
+    .owl-carousel .hero__item2,
+    .owl-carousel .hero__item3,
+    .owl-carousel .hero__item4 {
+        position: relative;
+        width: 100%;
+        height: 500px; /* Adjust height as needed */
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        object-fit: contain;
+    }
+
+    .hero__item img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain; /* Ensures full image is visible without cropping */
+    }
+
+    .hero__item {
+        background-image: url('/img/WhatsApp\ Image\ 2025-02-11\ at\ 1.25.51\ AM.jpeg'); /* Add actual image paths */
+    }
+
+    .hero__item2 {
+        background-image: url('/img/WhatsApp\ Image\ 2025-02-11\ at\ 12.21.44\ AM.jpeg');
+    }
+
+    .hero__item3 {
+        background-image: url('/img/WhatsApp\ Image\ 2025-02-11\ at\ 12.38.21\ AM.jpeg');
+    }
+
+    .hero__item4 {
+        background-image: url('/img/WhatsApp\ Image\ 2025-02-11\ at\ 2.49.40\ AM.jpeg');
+    }
+</style>
+<!-- Fruits Shop Start-->
+<div class="container-fluid fruite py-5">
+    <div class="container py-5">
+        <h1 class="mb-4 text-center fhead fw-bold"
+            style="font-size: 3rem;
+           font-weight: 900;
+           text-transform: uppercase;
+           color: #004d00;
+           background: linear-gradient(to right, #81C408, #4a8a08);
+           background-clip: text;
+           -webkit-background-clip: text;
+           -webkit-text-fill-color: transparent;
+           text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.3);
+           letter-spacing: 3px;">
+            FRESH VEGETABLES MARKET
+        </h1>
+
+
+
+        <div class="row g-4">
+            <div class="col-lg-12">
+                <div class="row g-4">
+                    <div class="col-xl-3">
+                        <div class="input-group w-100 mx-auto d-flex">
+                            <input type="search" class="form-control p-3" placeholder="keywords" aria-describedby="search-icon-1">
+                            <span id="search-icon-1" class="input-group-text p-3"><i class="fa fa-search"></i></span>
+                        </div>
+                    </div>
+                    <div class="col-6"></div>
+                    <div class="col-xl-3">
+                        <div class="bg-light ps-3 py-3 rounded d-flex justify-content-between mb-4">
+                            <label for="fruits" style="margin-top: 11px;">Default Sorting:</label>
+                            <select id="fruits" name="fruitlist" class="border-0 form-select-sm bg-light me-3" form="fruitform">
+                                <option value="volvo">Nothing</option>
+                                <option value="saab">Popularity</option>
+                                <option value="opel">Organic</option>
+                                <option value="audi">Fantastic</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="row g-4">
+                    <div class="col-lg-3">
+                        <div class="row g-4">
+                            <div class="col-lg-12">
+                                <div class="mb-3">
+                                    <h4>Special Offers</h4>
+                                    <ul class="list-unstyled fruite-categorie">
+                                        <li>
+                                            <div class="d-flex justify-content-between fruite-name">
+                                                <a href="#"><i class="fas fa-apple-alt me-2"></i>Flat 20% Off</a>
+                                                <span>(1)</span>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="d-flex justify-content-between fruite-name">
+                                                <a href="#"><i class="fas fa-apple-alt me-2"></i>Buy 1 Get 1 Free</a>
+                                                <span>(2)</span>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="d-flex justify-content-between fruite-name">
+                                                <a href="#"><i class="fas fa-apple-alt me-2"></i>Free Delivery on Orders</a>
+                                                <span>(3)</span>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="d-flex justify-content-between fruite-name">
+                                                <a href="#"><i class="fas fa-apple-alt me-2"></i>Special Ramadan Discounts</a>
+                                                <span>(4)</span>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="d-flex justify-content-between fruite-name">
+                                                <a href="#"><i class="fas fa-apple-alt me-2"></i>Exclusive Deals</a>
+                                                <span>(5)</span>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col-lg-12">
+                                <div class="mb-3">
+                                    <h4 class="mb-2">Price</h4>
+                                    <input type="range" class="form-range w-100" id="rangeInput" name="rangeInput" min="0" max="500" value="0" oninput="amount.value=rangeInput.value">
+                                    <output id="amount" name="amount" min-velue="0" max-value="500" for="rangeInput">0</output>
+                                </div>
+                            </div>
+                            <div class="col-lg-12">
+                                <div class="mb-3 p-2 rounded shadow-sm text-center"
+                                     style="border: 2px solid #81C408; background-color: #f6fff0;">
+                                    <img src="~/img/veg side banner.jpeg"
+                                         alt="Discount Image"
+                                         class="img-fluid rounded"
+                                         style="width: 100%; height: auto; object-fit: cover;">
+                                </div>
+                            </div>
+                            <div class="col-lg-12">
+                                <h4 class="mb-3">Featured products</h4>
+                                <div class="d-flex align-items-center justify-content-start">
+                                    <div class="rounded me-4" style="width: 100px; height: 100px;">
+                                        <img src="~/categorypg_styling/img/featur-1.jpg" class="img-fluid rounded" alt="">
+                                    </div>
+                                    <div>
+                                        <h6 class="mb-2">Big Banana</h6>
+                                        <div class="d-flex mb-2">
+                                            <i class="fa fa-star text-secondary"></i>
+                                            <i class="fa fa-star text-secondary"></i>
+                                            <i class="fa fa-star text-secondary"></i>
+                                            <i class="fa fa-star text-secondary"></i>
+                                            <i class="fa fa-star"></i>
+                                        </div>
+                                        <div class="d-flex mb-2">
+                                            <h5 class="fw-bold me-2">2.99 $</h5>
+                                            <h5 class="text-danger text-decoration-line-through">4.11 $</h5>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="d-flex align-items-center justify-content-start">
+                                    <div class="rounded me-4" style="width: 100px; height: 100px;">
+                                        <img src="~/categorypg_styling/img/featur-2.jpg" class="img-fluid rounded" alt="">
+                                    </div>
+                                    <div>
+                                        <h6 class="mb-2">Big Banana</h6>
+                                        <div class="d-flex mb-2">
+                                            <i class="fa fa-star text-secondary"></i>
+                                            <i class="fa fa-star text-secondary"></i>
+                                            <i class="fa fa-star text-secondary"></i>
+                                            <i class="fa fa-star text-secondary"></i>
+                                            <i class="fa fa-star"></i>
+                                        </div>
+                                        <div class="d-flex mb-2">
+                                            <h5 class="fw-bold me-2">2.99 $</h5>
+                                            <h5 class="text-danger text-decoration-line-through">4.11 $</h5>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="d-flex align-items-center justify-content-start">
+                                    <div class="rounded me-4" style="width: 100px; height: 100px;">
+                                        <img src="~/categorypg_styling/img/featur-3.jpg" class="img-fluid rounded" alt="">
+                                    </div>
+                                    <div>
+                                        <h6 class="mb-2">Big Banana</h6>
+                                        <div class="d-flex mb-2">
+                                            <i class="fa fa-star text-secondary"></i>
+                                            <i class="fa fa-star text-secondary"></i>
+                                            <i class="fa fa-star text-secondary"></i>
+                                            <i class="fa fa-star text-secondary"></i>
+                                            <i class="fa fa-star"></i>
+                                        </div>
+                                        <div class="d-flex mb-2">
+                                            <h5 class="fw-bold me-2">2.99 $</h5>
+                                            <h5 class="text-danger text-decoration-line-through">4.11 $</h5>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="d-flex justify-content-center my-4">
+                                    <a href="#" class="btn border border-secondary px-4 py-3 rounded-pill text-primary w-100">View More</a>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="col-lg-9">
+                        <div class="row g-4">
+                            @foreach(var item in Model){
+                            <div class="col-md-4">
+                                <div class="product-card bg-white rounded-4 shadow-sm p-3 h-100 d-flex flex-column">
+                                    <span class="badge bg-danger position-absolute">New</span>
+                                        <img src="~/ProductImages/@item.ProductImage" class="product-image w-100 rounded mb-3" style="object-fit: cover; height: 200px;" alt="Product">
+                                    <div class="p-3 flex-grow-1">
+                                        <h5 class="fw-bold">@item.ProductName</h5>
+                                        <div class="d-flex align-items-center">
+                                            <div class="text-warning">
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star-half-alt"></i>
+                                            </div>
+                                            <small class="text-muted ms-2">(4.7/5)</small>
+                                        </div>
+                                            <p class="text-muted small mt-2">@item.ProductDescription</p>
+                                        <div class="d-flex justify-content-between align-items-center">
+                                                <span style="color: #7fad39;" class="price fw-bold">Rs: @item.ProductPrice</span>
+                                                <a href="@Url.Action("Shop_details","web",new{item.Product_id})" style="background-color: #7fad39; color: white;" class="btn btn px-3 py-1 rounded-pill">View Details</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            }
+                       
+
+
+                        </div> <!-- Row End -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Fruits Shop End-->
+<script src="~/categorypg_styling/lib/easing/easing.min.js"></script>
+<script src="~/categorypg_styling/lib/waypoints/waypoints.min.js"></script>
+<script src="~/categorypg_styling/lib/lightbox/js/lightbox.min.js"></script>
+<script src="~/categorypg_styling/lib/owlcarousel/owl.carousel.min.js"></script>
+
+<!-- Template Javascript -->
+<script src="~/categorypg_styling/js/main.js"></script>
